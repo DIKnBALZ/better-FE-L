@@ -14,7 +14,7 @@ import openfl.filters.ColorMatrixFilter;
 
 using StringTools;
 
-/** 
+/**
 	Enumerator for settingtypes
 **/
 enum SettingTypes
