@@ -326,10 +326,8 @@ class Init extends FlxState
 
 	public static function saveSettings():Void
 	{
-		// ez save lol
 		FlxG.save.data.settings = trueSettings;
 		FlxG.save.flush();
-
 		updateAll();
 	}
 
@@ -342,27 +340,19 @@ class Init extends FlxState
 	public static function updateAll()
 	{
 		FlxG.autoPause = trueSettings.get('Auto Pause');
-
 		Overlay.updateDisplayInfo(trueSettings.get('FPS Counter'), trueSettings.get('Debug Info'), trueSettings.get('Memory Counter'));
-
 		#if !html5
-		Main.updateFramerate(trueSettings.get("Framerate Cap"));
+			Main.updateFramerate(trueSettings.get("Framerate Cap"));
 		#end
-
-		///*
 		filters = [];
 		FlxG.game.setFilters(filters);
-
 		var theFilter:String = trueSettings.get('Filter');
 		if (gameFilters.get(theFilter) != null)
 		{
 			var realFilter = gameFilters.get(theFilter).filter;
-
 			if (realFilter != null)
 				filters.push(realFilter);
 		}
-
 		FlxG.game.setFilters(filters);
-		// */
 	}
 }
