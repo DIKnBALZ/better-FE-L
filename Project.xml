@@ -27,7 +27,7 @@
 	<window if="mobile" orientation="landscape" fullscreen="true" resizable="false" />
 
 	<!-- _____________________________ Custom Defines ____________________________ -->
-	
+
 	<define name="DISCORD_RPC" if="desktop" unless="web || neko" />
 
 	<!-- _____________________________ Path Settings ____________________________ -->
@@ -59,6 +59,7 @@
 	<haxelib name="flixel-ui" />
 	<haxelib name="discord_rpc" if="DISCORD_RPC"/>
 	<haxelib name="polymod"/>
+	<haxelib name="hscript-improved"/> <!--haxelib git hscript-improved https://github.com/YoshiCrafter29/hscript-improved-->
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 

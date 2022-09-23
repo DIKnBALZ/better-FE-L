@@ -680,10 +680,7 @@ class PlayState extends MusicBeatState
 
 			// Controls
 
-			// RESET = Quick Game Over Screen
-			if (controls.RESET && !startingSong && !isStoryMode) {
-				health = 0;
-			}
+			// reset crashes the game when you start a song lol
 
 			if (health <= 0 && startedCountdown)
 			{
@@ -1144,7 +1141,7 @@ class PlayState extends MusicBeatState
 	{
 		if (!Init.trueSettings.get('No Camera Note Movement'))
 		{
-			var camDisplaceExtend:Float = 15;
+			var camDisplaceExtend:Float = 50; // :D
 			if (PlayState.SONG.notes[Std.int(curStep / 16)] != null)
 			{
 				if ((PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection && mustHit)
