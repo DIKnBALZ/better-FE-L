@@ -342,88 +342,97 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				bg.scale.set(6, 6);
 				add(bg);
 
-			case 'tank':
-				// PlayState.defaultCamZoom = 0.9;
-				PlayState.defaultCamZoom = 0.5;
+			// case 'tank':
+			// 	// PlayState.defaultCamZoom = 0.9;
+			// 	PlayState.defaultCamZoom = 0.5;
 				
-				var sky:FNFSprite = new FNFSprite(-400, -400).loadGraphic(Paths.image('backgrounds/' + curStage + '/tankSky'));
-				sky.scrollFactor.set(0, 0);
-				add(sky);
+			// 	var sky:FNFSprite = new FNFSprite(-400, -400).loadGraphic(Paths.image('backgrounds/' + curStage + '/tankSky'));
+			// 	sky.scrollFactor.set(0, 0);
+			// 	add(sky);
 
-				var clouds:FNFSprite = new FNFSprite(FlxG.random.int(-700, -100), FlxG.random.int(-20, 20)).loadGraphic(Paths.image('backgrounds/' + curStage + '/tankClouds'));
-				clouds.scrollFactor.set(0.1, 0.1);
-				clouds.active = true;
-				clouds.velocity.x = FlxG.random.float(5, 15);
-				add(clouds);
+			// 	var clouds:FNFSprite = new FNFSprite(FlxG.random.int(-700, -100), FlxG.random.int(-20, 20)).loadGraphic(Paths.image('backgrounds/' + curStage + '/tankClouds'));
+			// 	clouds.scrollFactor.set(0.1, 0.1);
+			// 	clouds.active = true;
+			// 	clouds.velocity.x = FlxG.random.float(5, 15);
+			// 	add(clouds);
 
-				var mountains:FNFSprite = new FNFSprite(-300, -20).loadGraphic(Paths.image('backgrounds/' + curStage + '/tankMountains'));
-				mountains.scrollFactor.set(0.2, 0.2);
-				mountains.setGraphicSize(Std.int(mountains.width * 1.2));
-				mountains.updateHitbox();
-				add(mountains);
+			// 	var mountains:FNFSprite = new FNFSprite(-300, -20).loadGraphic(Paths.image('backgrounds/' + curStage + '/tankMountains'));
+			// 	mountains.scrollFactor.set(0.2, 0.2);
+			// 	mountains.setGraphicSize(Std.int(mountains.width * 1.2));
+			// 	mountains.updateHitbox();
+			// 	add(mountains);
 
-				var buildings:FNFSprite = new FNFSprite(-200, 0).loadGraphic(Paths.image('backgrounds/' + curStage + '/tankBuildings'));
-				buildings.scrollFactor.set(0.3, 0.3);
-				buildings.setGraphicSize(Std.int(buildings.width * 1.1));
-				buildings.updateHitbox();
-				add(buildings);
+			// 	var buildings:FNFSprite = new FNFSprite(-200, 0).loadGraphic(Paths.image('backgrounds/' + curStage + '/tankBuildings'));
+			// 	buildings.scrollFactor.set(0.3, 0.3);
+			// 	buildings.setGraphicSize(Std.int(buildings.width * 1.1));
+			// 	buildings.updateHitbox();
+			// 	add(buildings);
 
-				var ruins:FNFSprite = new FNFSprite(-200, 0).loadGraphic(Paths.image('backgrounds/' + curStage + '/tankRuins'));
-				ruins.scrollFactor.set(0.35, 0.35);
-				ruins.setGraphicSize(Std.int(ruins.width * 1.1));
-				ruins.updateHitbox();
-				add(ruins);
+			// 	var ruins:FNFSprite = new FNFSprite(-200, 0).loadGraphic(Paths.image('backgrounds/' + curStage + '/tankRuins'));
+			// 	ruins.scrollFactor.set(0.35, 0.35);
+			// 	ruins.setGraphicSize(Std.int(ruins.width * 1.1));
+			// 	ruins.updateHitbox();
+			// 	add(ruins);
 				
-				var smokeL:FNFSprite = new FNFSprite(-200, -100);
-				smokeL.scrollFactor.set(0.4, 0.4);
-				smokeL.frames = Paths.getSparrowAtlas('backgrounds/' + curStage + '/tankRuins');
-				smokeL.animation.addByPrefix('SmokeBlurLeft', 'SmokeBlurLeft', 24, true);
-				smokeL.animation.play('SmokeBlurLeft');
-				add(smokeL);
+			// 	var smokeL:FNFSprite = new FNFSprite(-200, -100);
+			// 	smokeL.scrollFactor.set(0.4, 0.4);
+			// 	smokeL.frames = Paths.getSparrowAtlas('backgrounds/' + curStage + '/tankRuins');
+			// 	smokeL.animation.addByPrefix('SmokeBlurLeft', 'SmokeBlurLeft', 24, true);
+			// 	smokeL.animation.play('SmokeBlurLeft');
+			// 	add(smokeL);
 
-				var smokeR:FNFSprite = new FNFSprite(1100, -100);
-				smokeR.scrollFactor.set(0.4, 0.4);
-				smokeR.frames = Paths.getSparrowAtlas('backgrounds/' + curStage + '/smokeRight');
-				smokeR.animation.addByPrefix('SmokeRight', 'SmokeRight', 24, true);
-				smokeR.animation.play('SmokeRight');
-				add(smokeR);
+			// 	var smokeR:FNFSprite = new FNFSprite(1100, -100);
+			// 	smokeR.scrollFactor.set(0.4, 0.4);
+			// 	smokeR.frames = Paths.getSparrowAtlas('backgrounds/' + curStage + '/smokeRight');
+			// 	smokeR.animation.addByPrefix('SmokeRight', 'SmokeRight', 24, true);
+			// 	smokeR.animation.play('SmokeRight');
+			// 	add(smokeR);
 
-				tankWatchtower = new FNFSprite('tankWatchtower', 100, 50, 0.5, 0.5, ['watchtower gradient color']);
-				add(tankWatchtower);
+			// 	tankWatchtower = new FNFSprite('tankWatchtower', 100, 50, 0.5, 0.5, ['watchtower gradient color']);
+			// 	add(tankWatchtower);
 
-				tankGround = new FNFSprite('tankRolling', 300, 300, 0.5, 0.5, ['BG tank w lighting'], true);
-				add(tankGround);
+			// 	tankGround = new FNFSprite('tankRolling', 300, 300, 0.5, 0.5, ['BG tank w lighting'], true);
+			// 	add(tankGround);
 
-				tankmanRun = new FlxTypedGroup<TankmenBG>();
-				foreground.add(tankmanRun);
+			// 	tankmanRun = new FlxTypedGroup<TankmenBG>();
+			// 	foreground.add(tankmanRun);
 
-				var ground:FNFSprite = new FNFSprite('tankGround', -420, -150);
-				ground.setGraphicSize(Std.int(ground.width * 1.15));
-				ground.updateHitbox();
-				add(ground);
-				moveTank();
+			// 	var ground:FNFSprite = new FNFSprite('tankGround', -420, -150);
+			// 	ground.setGraphicSize(Std.int(ground.width * 1.15));
+			// 	ground.updateHitbox();
+			// 	add(ground);
+			// 	moveTank();
 
-				var tankdude0:FNFSprite = new FNFSprite('tank0', -500, 650, 1.7, 1.5, ['fg']);
-				foregroundSprites.add(tankdude0);
+			// 	var tankdude0:FNFSprite = new FNFSprite('tank0', -500, 650, 1.7, 1.5, ['fg']);
+			// 	foregroundSprites.add(tankdude0);
 
-				var tankdude1:FNFSprite = new FNFSprite('tank1', -300, 750, 2, 0.2, ['fg']);
-				foregroundSprites.add(tankdude1);
+			// 	var tankdude1:FNFSprite = new FNFSprite('tank1', -300, 750, 2, 0.2, ['fg']);
+			// 	foregroundSprites.add(tankdude1);
 
-				var tankdude2:FNFSprite = new FNFSprite('tank2', 450, 940, 1.5, 1.5, ['foreground']);
-				foregroundSprites.add(tankdude2);
+			// 	var tankdude2:FNFSprite = new FNFSprite('tank2', 450, 940, 1.5, 1.5, ['foreground']);
+			// 	foregroundSprites.add(tankdude2);
 
-				var tankdude4:FNFSprite = new FNFSprite('tank4', 1300, 900, 1.5, 1.5, ['fg']);
-				foregroundSprites.add(tankdude4);
+			// 	var tankdude4:FNFSprite = new FNFSprite('tank4', 1300, 900, 1.5, 1.5, ['fg']);
+			// 	foregroundSprites.add(tankdude4);
 
-				var tankdude5:FNFSprite = new FNFSprite('tank5', 1620, 700, 1.5, 1.5, ['fg']);
-				foregroundSprites.add(tankdude5);
+			// 	var tankdude5:FNFSprite = new FNFSprite('tank5', 1620, 700, 1.5, 1.5, ['fg']);
+			// 	foregroundSprites.add(tankdude5);
 
-				var tankdude3:FNFSprite = new FNFSprite('tank3', 1300, 1200, 3.5, 2.5, ['fg']);
-				foregroundSprites.add(tankdude3);
+			// 	var tankdude3:FNFSprite = new FNFSprite('tank3', 1300, 1200, 3.5, 2.5, ['fg']);
+			// 	foregroundSprites.add(tankdude3);
 
 			default:
 				PlayState.defaultCamZoom = 0.9;
 				curStage = 'stage';
+
+				// var bg:WizSprite = new WizSprite({
+				// 	x: -600, y: -200,
+				// 	scrollX: 0.9, scrollY: 0.9
+				// }).loadGraphic(Paths.image('backgrounds/' + curStage + '/stageback'));
+				// bg.antialiasing = true;
+				// bg.active = false;
+				// add(bg);
+				
 				var bg:FNFSprite = new FNFSprite(-600, -200).loadGraphic(Paths.image('backgrounds/' + curStage + '/stageback'));
 				bg.antialiasing = true;
 				bg.scrollFactor.set(0.9, 0.9);
@@ -462,8 +471,8 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				gfVersion = 'gf-pixel';
 			case 'schoolEvil':
 				gfVersion = 'gf-pixel';
-			case 'tank':
-				gfVersion = 'gf-tankmen';
+			// case 'tank':
+			// 	gfVersion = 'gf-tankmen';
 		}
 
 		return gfVersion;
@@ -533,11 +542,11 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				boyfriend.y += 0;
 				dad.y += 60;
 				dad.x -= 80;
-				if (gfVersion != 'pico-speaker')
-				{
-					gf.x -= 170;
-					gf.y -= 75;
-				}
+				// if (gfVersion != 'pico-speaker')
+				// {
+				// 	gf.x -= 170;
+				// 	gf.y -= 75;
+				// }
 		}
 	}
 
@@ -603,8 +612,8 @@ class Stage extends FlxTypedGroup<FlxBasic>
 					trainCooldown = FlxG.random.int(-4, 0);
 					trainStart();
 				}
-			case 'tank':
-				tankWatchtower.dance();
+			// case 'tank':
+			// 	tankWatchtower.dance();
 		}
 	}
 
@@ -623,8 +632,8 @@ class Stage extends FlxTypedGroup<FlxBasic>
 						trainFrameTiming = 0;
 					}
 				}
-			case 'tank':
-				moveTank();
+			// case 'tank':
+			// 	moveTank();
 
 		}
 	}
@@ -682,14 +691,14 @@ class Stage extends FlxTypedGroup<FlxBasic>
 		return super.add(Object);
 	}
 
-	function moveTank():Void
-	{
-		// if (!inCutscene)
-		// {
-			tankAngle += tankSpeed * FlxG.elapsed;
-			tankGround.angle = (tankAngle - 90 + 15);
-			tankGround.x = tankX + 1500 * Math.cos(Math.PI / 180 * (1 * tankAngle + 180));
-			tankGround.y = 1300 + 1100 * Math.sin(Math.PI / 180 * (1 * tankAngle + 180));
-		// }
-	}
+	// function moveTank():Void
+	// {
+	// 	// if (!inCutscene)
+	// 	// {
+	// 		tankAngle += tankSpeed * FlxG.elapsed;
+	// 		tankGround.angle = (tankAngle - 90 + 15);
+	// 		tankGround.x = tankX + 1500 * Math.cos(Math.PI / 180 * (1 * tankAngle + 180));
+	// 		tankGround.y = 1300 + 1100 * Math.sin(Math.PI / 180 * (1 * tankAngle + 180));
+	// 	// }
+	// }
 }

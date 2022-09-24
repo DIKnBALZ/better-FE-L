@@ -3,6 +3,7 @@ package gameObjects.background;
 import flixel.FlxG;
 import flixel.FlxSprite;
 
+
 class TankmenBG extends FlxSprite
 {
 	public static var animationNotes:Array<Dynamic> = [];
@@ -56,15 +57,15 @@ class TankmenBG extends FlxSprite
 			if (goingRight)
 			{
 				wackyShit = FlxG.width * 0.02 - endingOffset;
-				x = wackyShit + (Conductor.songPosition - strumTime) * tankSpeed;
+				x = wackyShit + (meta.data.Conductor.songPosition - strumTime) * tankSpeed;
 			}
 			else
 			{
-				x = wackyShit - (Conductor.songPosition - strumTime) * tankSpeed;
+				x = wackyShit - (meta.data.Conductor.songPosition - strumTime) * tankSpeed;
 			}
 		}
 
-		if (Conductor.songPosition > strumTime)
+		if (meta.data.Conductor.songPosition > strumTime)
 		{
 			animation.play('shot');
 			if (goingRight)

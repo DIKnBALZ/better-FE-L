@@ -1,13 +1,14 @@
 package gameObjects.background;
 
 import flixel.FlxSprite;
+import gameObjects.background.WizSprite;
 
 typedef WizardGamerData =
 {
-	?var x:Null<Float>;
-	?var y:Null<Float>;
-	?var scrollX:Null<Float>;
-	?var scrollY:Null<Float>;
+	@:optional var x:Float;
+	@:optional var y:Float;
+	@:optional var scrollX:Float;
+	@:optional var scrollY:Float;
 };
 
 class WizSprite extends FlxSprite
@@ -15,6 +16,9 @@ class WizSprite extends FlxSprite
 	public function new(data:WizardGamerData)
 	{
 		super(data.x, data.y);
+		// x == null ? 0 : x;
+
+		// @:optional var x:Float;
 		var x:Float = data.scrollX == null ? 1 : data.scrollX;
 		var y:Float = data.scrollY == null ? 1 : data.scrollY;
 		scrollFactor.set(x, y);
