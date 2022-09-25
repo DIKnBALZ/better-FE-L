@@ -182,6 +182,11 @@ class Paths
 		return getPath(file, type, library);
 	}
 
+	inline static public function hscript(key:String, ?library:String)
+	{
+		return getPath('$key.hscript', TEXT, library);
+	}
+
 	inline static public function txt(key:String, ?library:String)
 	{
 		return getPath('$key.txt', TEXT, library);

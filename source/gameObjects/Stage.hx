@@ -17,6 +17,7 @@ import flixel.tweens.FlxTween;
 import gameObjects.background.*;
 import meta.CoolUtil;
 import meta.data.Conductor;
+import meta.data.HScript;
 import meta.data.dependency.FNFSprite;
 import meta.state.PlayState;
 
@@ -422,38 +423,13 @@ class Stage extends FlxTypedGroup<FlxBasic>
 			// 	foregroundSprites.add(tankdude3);
 
 			default:
-				PlayState.defaultCamZoom = 0.9;
-				curStage = 'stage';
-
-				// var bg:WizSprite = new WizSprite({
-				// 	x: -600, y: -200,
-				// 	scrollX: 0.9, scrollY: 0.9
-				// }).loadGraphic(Paths.image('backgrounds/' + curStage + '/stageback'));
-				// bg.antialiasing = true;
-				// bg.active = false;
-				// add(bg);
-				
-				var bg:FNFSprite = new FNFSprite(-600, -200).loadGraphic(Paths.image('backgrounds/' + curStage + '/stageback'));
-				bg.antialiasing = true;
-				bg.scrollFactor.set(0.9, 0.9);
-				bg.active = false;
-				add(bg);
-
-				var stageFront:FNFSprite = new FNFSprite(-650, 600).loadGraphic(Paths.image('backgrounds/' + curStage + '/stagefront'));
-				stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-				stageFront.updateHitbox();
-				stageFront.antialiasing = true;
-				stageFront.scrollFactor.set(0.9, 0.9);
-				stageFront.active = false;
-				add(stageFront);
-
-				var stageCurtains:FNFSprite = new FNFSprite(-500, -300).loadGraphic(Paths.image('backgrounds/' + curStage + '/stagecurtains'));
-				stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-				stageCurtains.updateHitbox();
-				stageCurtains.antialiasing = true;
-				stageCurtains.scrollFactor.set(1.3, 1.3);
-				stageCurtains.active = false;
-				add(stageCurtains);
+				var script:HScript = new HScript("stages/default");
+				script.setVariable("FNFSprite", FNFSprite);
+				script.setVariable("PlayState", PlayState);
+				script.setVariable("Paths", Paths);
+				script.setVariable("Std", Std);
+				script.setVariable("add", function(obj:FlxBasic) {add(obj);});
+				script.create();
 		}
 	}
 
