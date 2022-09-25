@@ -132,19 +132,6 @@ class Character extends FNFSprite
 				animation.addByIndices('danceRight', 'GF Dancing at Gunpoint', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 
 				playAnim('danceRight');
-
-			case 'dad':
-				var script:HScript = new HScript('characters/$curCharacter');
-				script.setVariable("character", this);
-				script.setVariable("characterData", characterData);
-				script.setVariable("Paths", Paths);
-				script.create();
-			case 'spooky':
-				var script:HScript = new HScript('characters/$curCharacter');
-				script.setVariable("character", this);
-				script.setVariable("characterData", characterData);
-				script.setVariable("Paths", Paths);
-				script.create();
 			case 'mom':
 				tex = Paths.getSparrowAtlas('characters/Mom_Assets');
 				frames = tex;
@@ -448,25 +435,11 @@ class Character extends FNFSprite
 
 				playAnim('idle');
 			default:
-				// set up animations if they aren't already
-
-				// fyi if you're reading this this isn't meant to be well made, it's kind of an afterthought I wanted to mess with and
-				// I'm probably not gonna clean it up and make it an actual feature of the engine I just wanted to play other people's mods but not add their files to
-				// the engine because that'd be stealing assets
-				var fileNew = curCharacter + 'Anims';
-				if (OpenFlAssets.exists(Paths.offsetTxt(fileNew)))
-				{
-					var characterAnims:Array<String> = CoolUtil.coolTextFile(Paths.offsetTxt(fileNew));
-					var characterName:String = characterAnims[0].trim();
-					frames = Paths.getSparrowAtlas('characters/$characterName');
-					for (i in 1...characterAnims.length)
-					{
-						var getterArray:Array<Array<String>> = CoolUtil.getAnimsFromTxt(Paths.offsetTxt(fileNew));
-						animation.addByPrefix(getterArray[i][0], getterArray[i][1].trim(), 24, false);
-					}
-				}
-				else
-					return setCharacter(x, y, 'bf');
+				var script:HScript = new HScript('characters/$curCharacter');
+				script.setVariable("character", this);
+				script.setVariable("characterData", characterData);
+				script.setVariable("Paths", Paths);
+				script.create();
 		}
 
 		// set up offsets cus why not
