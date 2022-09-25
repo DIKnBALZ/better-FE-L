@@ -66,8 +66,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 		{
 			// this is because I want to avoid editing the fnf chart type
 			// custom stage stuffs will come with forever charts
-			switch (CoolUtil.spaceToDash(PlayState.SONG.song.toLowerCase()))
-			{
+			switch (CoolUtil.spaceToDash(PlayState.SONG.song.toLowerCase())) {
 				case 'spookeez' | 'south' | 'monster':
 					curStage = 'spooky';
 				case 'pico' | 'blammed' | 'philly-nice':
@@ -287,6 +286,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				script.setVariable("Std", Std);
 				script.setVariable("curStage", curStage);
 				script.setVariable("gfVersion", gfVersion);
+				script.setVariable("foreground", foreground);
 				script.setVariable("add", function(obj:FlxBasic) {add(obj);});
 				script.create();
 		}

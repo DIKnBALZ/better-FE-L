@@ -221,6 +221,20 @@ class PlayState extends MusicBeatState
 		stageBuild = new Stage(curStage);
 		add(stageBuild);
 
+		if (FileSystem.exists('assets/global_scripts')) {
+			for (f in FileSystem.readDirectory('assets/global_scripts')) {
+				var script:HScript = new HScript(StringTools.replace('global_scripts/$f', '.hscript', ''));
+				script.setVariable("this", script);
+				script.setVariable("PlayState", this);
+				script.setVariable("Paths", Paths);
+				script.setVariable("Std", Std);
+				script.setVariable("curStage", curStage);
+				script.setVariable("add", function(obj:FlxBasic) {add(obj);});
+				script.create();
+				scripts.push(script);
+			}
+		}
+
 		if (FileSystem.exists('assets/songs/${SONG.song.toLowerCase()}/scripts')) {
 			for (f in FileSystem.readDirectory('assets/songs/${SONG.song.toLowerCase()}/scripts')) {
 				var script:HScript = new HScript(StringTools.replace('songs/${SONG.song.toLowerCase()}/scripts/$f', '.hscript', ''));
