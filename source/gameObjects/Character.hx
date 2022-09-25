@@ -134,29 +134,17 @@ class Character extends FNFSprite
 				playAnim('danceRight');
 
 			case 'dad':
-				// DAD ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('characters/DADDY_DEAREST');
-				frames = tex;
-				animation.addByPrefix('idle', 'Dad idle dance', 24, false);
-				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
-				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
-				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
-				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
-
-				playAnim('idle');
+				var script:HScript = new HScript('characters/$curCharacter');
+				script.setVariable("character", this);
+				script.setVariable("characterData", characterData);
+				script.setVariable("Paths", Paths);
+				script.create();
 			case 'spooky':
-				tex = Paths.getSparrowAtlas('characters/spooky_kids_assets');
-				frames = tex;
-				animation.addByPrefix('singUP', 'spooky UP NOTE', 24, false);
-				animation.addByPrefix('singDOWN', 'spooky DOWN note', 24, false);
-				animation.addByPrefix('singLEFT', 'note sing left', 24, false);
-				animation.addByPrefix('singRIGHT', 'spooky sing right', 24, false);
-				animation.addByIndices('danceLeft', 'spooky dance idle', [0, 2, 6], "", 12, false);
-				animation.addByIndices('danceRight', 'spooky dance idle', [8, 10, 12, 14], "", 12, false);
-
-				characterData.quickDancer = true;
-
-				playAnim('danceRight');
+				var script:HScript = new HScript('characters/$curCharacter');
+				script.setVariable("character", this);
+				script.setVariable("characterData", characterData);
+				script.setVariable("Paths", Paths);
+				script.create();
 			case 'mom':
 				tex = Paths.getSparrowAtlas('characters/Mom_Assets');
 				frames = tex;
