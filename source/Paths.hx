@@ -199,7 +199,7 @@ class Paths
 
 	inline static public function offsetTxt(key:String, ?library:String)
 	{
-		return getPath('images/characters/$key.txt', TEXT, library);
+		return getPath('characters/$key.txt', TEXT, library);
 	}
 
 	inline static public function json(key:String, ?library:String)
@@ -261,5 +261,11 @@ class Paths
 	inline static public function getPackerAtlas(key:String, ?library:String)
 	{
 		return (FlxAtlasFrames.fromSpriteSheetPacker(image(key, library), file('images/$key.txt', library)));
+	}
+
+	inline static public function getCharacterSparrow(key:String, ?library:String)
+	{
+		var graphic:FlxGraphic = returnGraphic(key, library);
+		return (FlxAtlasFrames.fromSparrow(graphic, File.getContent(file('characters/$key/spritesheet.xml', library))));
 	}
 }
