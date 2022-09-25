@@ -1,6 +1,6 @@
 function create() {
         // DAD ANIMATION LOADING CODE
-        tex = Paths.getSparrowAtlas('characters/DADDY_DEAREST');
+        tex = Paths.getSparrowAtlas('characters/dad/DADDY_DEAREST');
         character.frames = tex;
         character.animation.addByPrefix('idle', 'Dad idle dance', 24, false);
         character.animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
