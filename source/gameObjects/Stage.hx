@@ -31,6 +31,7 @@ using StringTools;
 class Stage extends FlxTypedGroup<FlxBasic>
 {
 	var script:HScript;
+	var gfVersion:String = 'gf';
 
 	var halloweenBG:FNFSprite;
 	var phillyCityLights:FlxTypedGroup<FNFSprite>;
@@ -196,77 +197,6 @@ class Stage extends FlxTypedGroup<FlxBasic>
 
 				fastCar = new FNFSprite(-300, 160).loadGraphic(Paths.image('backgrounds/' + curStage + '/fastCarLol'));
 			// loadArray.add(limo);
-			case 'mall':
-				curStage = 'mall';
-				PlayState.defaultCamZoom = 0.80;
-
-				var bg:FNFSprite = new FNFSprite(-1000, -500).loadGraphic(Paths.image('backgrounds/' + curStage + '/bgWalls'));
-				bg.antialiasing = true;
-				bg.scrollFactor.set(0.2, 0.2);
-				bg.active = false;
-				bg.setGraphicSize(Std.int(bg.width * 0.8));
-				bg.updateHitbox();
-				add(bg);
-
-				upperBoppers = new FNFSprite(-240, -90);
-				upperBoppers.frames = Paths.getSparrowAtlas('backgrounds/' + curStage + '/upperBop');
-				upperBoppers.animation.addByPrefix('bop', "Upper Crowd Bob", 24, false);
-				upperBoppers.antialiasing = true;
-				upperBoppers.scrollFactor.set(0.33, 0.33);
-				upperBoppers.setGraphicSize(Std.int(upperBoppers.width * 0.85));
-				upperBoppers.updateHitbox();
-				add(upperBoppers);
-
-				var bgEscalator:FNFSprite = new FNFSprite(-1100, -600).loadGraphic(Paths.image('backgrounds/' + curStage + '/bgEscalator'));
-				bgEscalator.antialiasing = true;
-				bgEscalator.scrollFactor.set(0.3, 0.3);
-				bgEscalator.active = false;
-				bgEscalator.setGraphicSize(Std.int(bgEscalator.width * 0.9));
-				bgEscalator.updateHitbox();
-				add(bgEscalator);
-
-				var tree:FNFSprite = new FNFSprite(370, -250).loadGraphic(Paths.image('backgrounds/' + curStage + '/christmasTree'));
-				tree.antialiasing = true;
-				tree.scrollFactor.set(0.40, 0.40);
-				add(tree);
-
-				bottomBoppers = new FNFSprite(-300, 140);
-				bottomBoppers.frames = Paths.getSparrowAtlas('backgrounds/' + curStage + '/bottomBop');
-				bottomBoppers.animation.addByPrefix('bop', 'Bottom Level Boppers', 24, false);
-				bottomBoppers.antialiasing = true;
-				bottomBoppers.scrollFactor.set(0.9, 0.9);
-				bottomBoppers.setGraphicSize(Std.int(bottomBoppers.width * 1));
-				bottomBoppers.updateHitbox();
-				add(bottomBoppers);
-
-				var fgSnow:FNFSprite = new FNFSprite(-600, 700).loadGraphic(Paths.image('backgrounds/' + curStage + '/fgSnow'));
-				fgSnow.active = false;
-				fgSnow.antialiasing = true;
-				add(fgSnow);
-
-				santa = new FNFSprite(-840, 150);
-				santa.frames = Paths.getSparrowAtlas('backgrounds/' + curStage + '/santa');
-				santa.animation.addByPrefix('idle', 'santa idle in fear', 24, false);
-				santa.antialiasing = true;
-				add(santa);
-			case 'mallEvil':
-				curStage = 'mallEvil';
-				var bg:FNFSprite = new FNFSprite(-400, -500).loadGraphic(Paths.image('backgrounds/mall/evilBG'));
-				bg.antialiasing = true;
-				bg.scrollFactor.set(0.2, 0.2);
-				bg.active = false;
-				bg.setGraphicSize(Std.int(bg.width * 0.8));
-				bg.updateHitbox();
-				add(bg);
-
-				var evilTree:FNFSprite = new FNFSprite(300, -300).loadGraphic(Paths.image('backgrounds/mall/evilTree'));
-				evilTree.antialiasing = true;
-				evilTree.scrollFactor.set(0.2, 0.2);
-				add(evilTree);
-
-				var evilSnow:FNFSprite = new FNFSprite(-200, 700).loadGraphic(Paths.image("backgrounds/mall/evilSnow"));
-				evilSnow.antialiasing = true;
-				add(evilSnow);
 
 			// case 'tank':
 			// 	// PlayState.defaultCamZoom = 0.9;
@@ -356,6 +286,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				script.setVariable("Paths", Paths);
 				script.setVariable("Std", Std);
 				script.setVariable("curStage", curStage);
+				script.setVariable("gfVersion", gfVersion);
 				script.setVariable("add", function(obj:FlxBasic) {add(obj);});
 				script.create();
 		}
@@ -363,18 +294,13 @@ class Stage extends FlxTypedGroup<FlxBasic>
 
 	public function returnGFtype(curStage)
 	{
-		var gfVersion:String = 'gf';
-
+		script.callFunction("returnGFtype");
 		switch (curStage)
 		{
 			case 'highway':
 				gfVersion = 'gf-car';
-			case 'mall' | 'mallEvil':
-				gfVersion = 'gf-christmas';
-			case 'school':
-				gfVersion = 'gf-pixel';
-			case 'schoolEvil':
-				gfVersion = 'gf-pixel';
+			default:
+				gfVersion = script.getVariable("gfVersion");
 			// case 'tank':
 			// 	gfVersion = 'gf-tankmen';
 		}
@@ -419,14 +345,6 @@ class Stage extends FlxTypedGroup<FlxBasic>
 			case 'highway':
 				boyfriend.y -= 220;
 				boyfriend.x += 260;
-
-			case 'mall':
-				boyfriend.x += 200;
-				dad.x -= 400;
-				dad.y += 20;
-
-			case 'mallEvil':
-				boyfriend.x += 320;
 				
 			case 'tank':
 				gf.y += 10;
@@ -465,10 +383,6 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				{
 					dancer.dance();
 				});
-			case 'mall':
-				upperBoppers.animation.play('bop', true);
-				bottomBoppers.animation.play('bop', true);
-				santa.animation.play('idle', true);
 
 			case 'philly':
 				if (!trainMoving)

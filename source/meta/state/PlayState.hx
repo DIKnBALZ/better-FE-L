@@ -1165,7 +1165,7 @@ class PlayState extends MusicBeatState
 	{
 		if (!Init.trueSettings.get('No Camera Note Movement'))
 		{
-			var camDisplaceExtend:Float = 50; // :D
+			var camDisplaceExtend:Float = 15; // :D
 			if (PlayState.SONG.notes[Std.int(curStep / 16)] != null)
 			{
 				if ((PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection && mustHit)

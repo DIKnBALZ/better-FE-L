@@ -18,3 +18,7 @@ function repositionPlayers(boyfriend:Character, dad:Character, gf:Character) {
         gf.x += 180;
         gf.y += 300;
 }
+
+function returnGFtype() {
+        gfVersion = 'gf-pixel';
+}

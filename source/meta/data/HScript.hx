@@ -126,4 +126,7 @@ class HScript
 
 	public function setVariable(variable:String, value:Dynamic)
 		interp.variables.set(variable, value);
+
+	public function getVariable(variable:String) :Dynamic
+		return interp.variables.get(variable);
 }

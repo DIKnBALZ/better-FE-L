@@ -79,3 +79,7 @@ function repositionPlayers(boyfriend:Character, dad:Character, gf:Character) {
 function stageUpdate(curBeat:Int, boyfriend:Boyfriend, gf:Character, dadOpponent:Character) {
         bgGirls.dance();
 }
+
+function returnGFtype() {
+        gfVersion = 'gf-pixel';
+}
