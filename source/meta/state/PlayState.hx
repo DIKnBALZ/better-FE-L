@@ -38,6 +38,7 @@ import openfl.events.KeyboardEvent;
 import openfl.filters.ShaderFilter;
 import openfl.media.Sound;
 import openfl.utils.Assets;
+import sys.FileSystem;
 import sys.io.File;
 
 using StringTools;
@@ -154,6 +155,8 @@ class PlayState extends MusicBeatState
 	// stores the last combo objects in an array
 	public static var lastCombo:Array<FlxSprite>;
 
+	var scripts:Array<HScript> = [];
+
 	// at the beginning of the playstate
 	override public function create()
 	{
@@ -218,6 +221,15 @@ class PlayState extends MusicBeatState
 		stageBuild = new Stage(curStage);
 		add(stageBuild);
 
+		if (FileSystem.exists('assets/songs/${SONG.song.toLowerCase()}/scripts')) {
+			for (f in FileSystem.readDirectory('assets/songs/${SONG.song.toLowerCase()}/scripts')) {
+				var script:HScript = new HScript(StringTools.replace('songs/${SONG.song.toLowerCase()}/scripts/$f', '.hscript', ''));
+				script.setVariable("this", script);
+				script.create();
+				scripts.push(script);
+			}
+		}
+
 		// set up characters here too
 		gf = new Character();
 		gf.adjustPos = false;
@@ -250,6 +262,10 @@ class PlayState extends MusicBeatState
 
 		add(dadOpponent);
 		add(boyfriend);
+
+		for (script in scripts) {
+			script.createInFront();
+		}
 
 		add(stageBuild.foreground);
 
@@ -360,6 +376,10 @@ class PlayState extends MusicBeatState
 			songIntroCutscene();
 		else
 			startCountdown();
+
+		for (script in scripts) {
+			script.createPost();
+		}
 
 		/**
 		 * SHADERS
@@ -523,6 +543,10 @@ class PlayState extends MusicBeatState
 	override public function update(elapsed:Float)
 	{
 		stageBuild.stageUpdateConstant(elapsed, boyfriend, gf, dadOpponent);
+		
+		for (script in scripts) {
+			script.update(elapsed);
+		}
 
 		super.update(elapsed);
 

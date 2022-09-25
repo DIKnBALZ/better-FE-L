@@ -6,6 +6,7 @@ import hscript.Parser;
 import lime.app.Application;
 import lime.utils.Assets;
 import meta.data.HScriptClasses;
+import sys.io.File;
 
 using StringTools;
 
@@ -27,7 +28,7 @@ class HScript
 		try
 		{
 			_path = path;
-			script = Assets.getText(Paths.hscript(path));
+			script = File.getContent(Paths.hscript(path));
 
 			parser.allowJSON = true;
 			parser.allowTypes = true;
@@ -36,6 +37,10 @@ class HScript
 
 			setVariable("trace", function(a) { trace(a); });
 			setVariable("state", flixel.FlxG.state);
+			setVariable("FlxSprite", flixel.FlxSprite);
+			setVariable("Paths", Paths);
+			setVariable("Std", Std);
+		        setVariable("add", function(obj:FlxBasic) {flixel.FlxG.state.add(obj);});
 			setVariable("FlxColor", HScriptClasses.getFlxColorClass());
 			setVariable("BlendMode", HScriptClasses.getBlendModeClass());
 			setVariable("Json", {
@@ -76,6 +81,18 @@ class HScript
 	{
 		executedScript = true;
 		callFunction("create", args);
+	}
+
+	public function createInFront(?args)
+	{
+		if (executedScript)
+		        callFunction("createInFront", args);
+	}
+
+	public function createPost(?args)
+	{
+		if (executedScript)
+		        callFunction("createPost", args);
 	}
 
 	public function update(elapsed:Float)

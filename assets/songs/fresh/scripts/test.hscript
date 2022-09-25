@@ -1,0 +1,6 @@
+function create() {
+}
+
+function update(elapsed) {
+        trace("anus");
+}

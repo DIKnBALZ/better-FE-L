@@ -1,5 +1,6 @@
 package meta;
 
+import haxe.io.Path;
 import lime.utils.Assets;
 import meta.state.PlayState;
 
