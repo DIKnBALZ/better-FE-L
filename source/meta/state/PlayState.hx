@@ -264,7 +264,7 @@ class PlayState extends MusicBeatState
 		add(boyfriend);
 
 		for (script in scripts) {
-			script.createInFront();
+			script.callFunction("createInFront");
 		}
 
 		add(stageBuild.foreground);
@@ -378,7 +378,7 @@ class PlayState extends MusicBeatState
 			startCountdown();
 
 		for (script in scripts) {
-			script.createPost();
+			script.callFunction("createPost");
 		}
 
 		/**

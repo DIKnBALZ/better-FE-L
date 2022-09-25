@@ -1,5 +1,6 @@
 package meta.data;
 
+import flixel.FlxBasic;
 import hscript.Expr;
 import hscript.Interp;
 import hscript.Parser;
@@ -40,7 +41,7 @@ class HScript
 			setVariable("FlxSprite", flixel.FlxSprite);
 			setVariable("Paths", Paths);
 			setVariable("Std", Std);
-		        setVariable("add", function(obj:FlxBasic) {flixel.FlxG.state.add(obj);});
+			setVariable("add", function(obj:FlxBasic) {flixel.FlxG.state.add(obj);});
 			setVariable("FlxColor", HScriptClasses.getFlxColorClass());
 			setVariable("BlendMode", HScriptClasses.getBlendModeClass());
 			setVariable("Json", {
@@ -81,18 +82,6 @@ class HScript
 	{
 		executedScript = true;
 		callFunction("create", args);
-	}
-
-	public function createInFront(?args)
-	{
-		if (executedScript)
-		        callFunction("createInFront", args);
-	}
-
-	public function createPost(?args)
-	{
-		if (executedScript)
-		        callFunction("createPost", args);
 	}
 
 	public function update(elapsed:Float)

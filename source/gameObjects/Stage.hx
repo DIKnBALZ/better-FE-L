@@ -30,6 +30,8 @@ using StringTools;
 **/
 class Stage extends FlxTypedGroup<FlxBasic>
 {
+	var script:HScript;
+
 	var halloweenBG:FNFSprite;
 	var phillyCityLights:FlxTypedGroup<FNFSprite>;
 	var phillyTrain:FNFSprite;
@@ -45,11 +47,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 	var bottomBoppers:FNFSprite;
 	var santa:FNFSprite;
 
-	var bgGirls:BackgroundGirls;
-
 	public var curStage:String;
-
-	var daPixelZoom = PlayState.daPixelZoom;
 
 	public var foreground:FlxTypedGroup<FlxBasic>;
 
@@ -269,79 +267,6 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				var evilSnow:FNFSprite = new FNFSprite(-200, 700).loadGraphic(Paths.image("backgrounds/mall/evilSnow"));
 				evilSnow.antialiasing = true;
 				add(evilSnow);
-			case 'school':
-				curStage = 'school';
-
-				// defaultCamZoom = 0.9;
-
-				var bgSky = new FNFSprite().loadGraphic(Paths.image('backgrounds/' + curStage + '/weebSky'));
-				bgSky.scrollFactor.set(0.1, 0.1);
-				add(bgSky);
-
-				var repositionShit = -200;
-
-				var bgSchool:FNFSprite = new FNFSprite(repositionShit, 0).loadGraphic(Paths.image('backgrounds/' + curStage + '/weebSchool'));
-				bgSchool.scrollFactor.set(0.6, 0.90);
-				add(bgSchool);
-
-				var bgStreet:FNFSprite = new FNFSprite(repositionShit).loadGraphic(Paths.image('backgrounds/' + curStage + '/weebStreet'));
-				bgStreet.scrollFactor.set(0.95, 0.95);
-				add(bgStreet);
-
-				var fgTrees:FNFSprite = new FNFSprite(repositionShit + 170, 130).loadGraphic(Paths.image('backgrounds/' + curStage + '/weebTreesBack'));
-				fgTrees.scrollFactor.set(0.9, 0.9);
-				add(fgTrees);
-
-				var bgTrees:FNFSprite = new FNFSprite(repositionShit - 380, -800);
-				var treetex = Paths.getPackerAtlas('backgrounds/' + curStage + '/weebTrees');
-				bgTrees.frames = treetex;
-				bgTrees.animation.add('treeLoop', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], 12);
-				bgTrees.animation.play('treeLoop');
-				bgTrees.scrollFactor.set(0.85, 0.85);
-				add(bgTrees);
-
-				var treeLeaves:FNFSprite = new FNFSprite(repositionShit, -40);
-				treeLeaves.frames = Paths.getSparrowAtlas('backgrounds/' + curStage + '/petals');
-				treeLeaves.animation.addByPrefix('leaves', 'PETALS ALL', 24, true);
-				treeLeaves.animation.play('leaves');
-				treeLeaves.scrollFactor.set(0.85, 0.85);
-				add(treeLeaves);
-
-				var widShit = Std.int(bgSky.width * 6);
-
-				bgSky.setGraphicSize(widShit);
-				bgSchool.setGraphicSize(widShit);
-				bgStreet.setGraphicSize(widShit);
-				bgTrees.setGraphicSize(Std.int(widShit * 1.4));
-				fgTrees.setGraphicSize(Std.int(widShit * 0.8));
-				treeLeaves.setGraphicSize(widShit);
-
-				fgTrees.updateHitbox();
-				bgSky.updateHitbox();
-				bgSchool.updateHitbox();
-				bgStreet.updateHitbox();
-				bgTrees.updateHitbox();
-				treeLeaves.updateHitbox();
-
-				bgGirls = new BackgroundGirls(-100, 190);
-				bgGirls.scrollFactor.set(0.9, 0.9);
-
-				if (PlayState.SONG.song.toLowerCase() == 'roses')
-					bgGirls.getScared();
-
-				bgGirls.setGraphicSize(Std.int(bgGirls.width * daPixelZoom));
-				bgGirls.updateHitbox();
-				add(bgGirls);
-			case 'schoolEvil':
-				var posX = 400;
-				var posY = 200;
-				var bg:FNFSprite = new FNFSprite(posX, posY);
-				bg.frames = Paths.getSparrowAtlas('backgrounds/' + curStage + '/animatedEvilSchool');
-				bg.animation.addByPrefix('idle', 'background 2', 24);
-				bg.animation.play('idle');
-				bg.scrollFactor.set(0.8, 0.9);
-				bg.scale.set(6, 6);
-				add(bg);
 
 			// case 'tank':
 			// 	// PlayState.defaultCamZoom = 0.9;
@@ -423,11 +348,14 @@ class Stage extends FlxTypedGroup<FlxBasic>
 			// 	foregroundSprites.add(tankdude3);
 
 			default:
-				var script:HScript = new HScript("stages/default");
+				script = new HScript('stages/$curStage');
 				script.setVariable("FNFSprite", FNFSprite);
+				script.setVariable("BackgroundGirls", BackgroundGirls);
+				script.setVariable("BackgroundDancer", BackgroundDancer);
 				script.setVariable("PlayState", PlayState);
 				script.setVariable("Paths", Paths);
 				script.setVariable("Std", Std);
+				script.setVariable("curStage", curStage);
 				script.setVariable("add", function(obj:FlxBasic) {add(obj);});
 				script.create();
 		}
@@ -483,6 +411,8 @@ class Stage extends FlxTypedGroup<FlxBasic>
 
 	public function repositionPlayers(curStage, boyfriend:Character, dad:Character, gf:Character):Void
 	{
+		script.callFunction("repositionPlayers", [boyfriend, dad, gf]);
+
 		// REPOSITIONING PER STAGE
 		switch (curStage)
 		{
@@ -497,20 +427,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 
 			case 'mallEvil':
 				boyfriend.x += 320;
-			case 'school':
-				boyfriend.x += 200;
-				boyfriend.y += 220;
-				dad.x += 200;
-				dad.y += 580;
-				gf.x += 200;
-				gf.y += 320;
-			case 'schoolEvil':
-				dad.x -= 150;
-				dad.y += 50;
-				boyfriend.x += 200;
-				boyfriend.y += 220;
-				gf.x += 180;
-				gf.y += 300;
+				
 			case 'tank':
 				gf.y += 10;
 				gf.x -= 30;
@@ -537,6 +454,8 @@ class Stage extends FlxTypedGroup<FlxBasic>
 
 	public function stageUpdate(curBeat:Int, boyfriend:Boyfriend, gf:Character, dadOpponent:Character)
 	{
+		script.callFunction("stageUpdate", [curBeat, boyfriend, gf, dadOpponent]);
+
 		// trace('update backgrounds');
 		switch (PlayState.curStage)
 		{
@@ -550,9 +469,6 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				upperBoppers.animation.play('bop', true);
 				bottomBoppers.animation.play('bop', true);
 				santa.animation.play('idle', true);
-
-			case 'school':
-				bgGirls.dance();
 
 			case 'philly':
 				if (!trainMoving)
@@ -595,6 +511,8 @@ class Stage extends FlxTypedGroup<FlxBasic>
 
 	public function stageUpdateConstant(elapsed:Float, boyfriend:Boyfriend, gf:Character, dadOpponent:Character)
 	{
+		script.callFunction("stageUpdateConstant", [elapsed, boyfriend, gf, dadOpponent]);
+
 		switch (PlayState.curStage)
 		{
 			case 'philly':
