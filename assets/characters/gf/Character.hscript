@@ -1,7 +1,4 @@
 function create() {
-    // GIRLFRIEND CODE
-    character.frames = Paths.getCharacterSparrow(character.curCharacter);
-    
     character.animation.addByPrefix('cheer', 'GF Cheer', 24, false);
     character.animation.addByPrefix('singLEFT', 'GF left note', 24, false);
     character.animation.addByPrefix('singRIGHT', 'GF Right Note', 24, false);

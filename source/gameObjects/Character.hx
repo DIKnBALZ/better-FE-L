@@ -214,26 +214,26 @@ class Character extends FNFSprite
 
 				flipX = true;
 
-			case 'bf':
-				frames = Paths.getSparrowAtlas('characters/BOYFRIEND');
+			// case 'bf':
+			// 	frames = Paths.getSparrowAtlas('characters/BOYFRIEND');
 
-				animation.addByPrefix('idle', 'BF idle dance', 24, false);
-				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
-				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
-				animation.addByPrefix('hey', 'BF HEY', 24, false);
-				animation.addByPrefix('scared', 'BF idle shaking', 24);
+			// 	animation.addByPrefix('idle', 'BF idle dance', 24, false);
+			// 	animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+			// 	animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+			// 	animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+			// 	animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+			// 	animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
+			// 	animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+			// 	animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+			// 	animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
+			// 	animation.addByPrefix('hey', 'BF HEY', 24, false);
+			// 	animation.addByPrefix('scared', 'BF idle shaking', 24);
 
-				playAnim('idle');
+			// 	playAnim('idle');
 
-				flipX = true;
+			// 	flipX = true;
 
-				characterData.offsetY = 70;
+			// 	characterData.offsetY = 70;
 			/*
 				case 'bf-og':
 					frames = Paths.getSparrowAtlas('characters/og/BOYFRIEND');
@@ -436,6 +436,7 @@ class Character extends FNFSprite
 				playAnim('idle');
 			default:
 				var script:HScript = new HScript('characters/$curCharacter/Character');
+				character.frames = Paths.getCharacterSparrow(character.curCharacter);
 				script.setVariable("character", this);
 				script.setVariable("characterData", characterData);
 				script.setVariable("Paths", Paths);
