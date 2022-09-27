@@ -1,6 +1,4 @@
 function create() {
-        tex = Paths.getCharacterSparrow(character.curCharacter);
-        character.frames = tex;
         character.animation.addByPrefix('singUP', 'spooky UP NOTE', 24, false);
         character.animation.addByPrefix('singDOWN', 'spooky DOWN note', 24, false);
         character.animation.addByPrefix('singLEFT', 'note sing left', 24, false);
@@ -9,7 +7,6 @@ function create() {
         character.animation.addByIndices('danceRight', 'spooky dance idle', [8, 10, 12, 14], "", 12, false);
 
         characterData.quickDancer = true;
-
-	characterData.danceType = "normal";
+        characterData.danceType = "normal";
         character.playAnim('danceRight');
 }

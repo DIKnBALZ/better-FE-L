@@ -11,10 +11,8 @@ function create() {
 	character.animation.addByPrefix('hey', 'BF HEY', 24, false);
 	character.animation.addByPrefix('scared', 'BF idle shaking', 24);
 
-	character.playAnim('idle');
-
 	character.flipX = true;
-
-	characterData.danceType = "normal";
 	character.characterData.offsetY = 70;
+	characterData.danceType = "normal";
+	character.playAnim('idle');
 }

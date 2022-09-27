@@ -316,23 +316,23 @@ class Character extends FNFSprite
 				playAnim('idle');
 
 				flipX = true;
-			case 'bf-car':
-				var tex = Paths.getSparrowAtlas('characters/bfCar');
-				frames = tex;
-				animation.addByPrefix('idle', 'BF idle dance', 24, false);
-				animation.addByIndices('idlePost', 'BF idle dance', [8, 9, 10, 11, 12, 13, 14], "", 24, true);
-				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
-				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
+			// case 'bf-car':
+			// 	var tex = Paths.getSparrowAtlas('characters/bfCar');
+			// 	frames = tex;
+			// 	animation.addByPrefix('idle', 'BF idle dance', 24, false);
+			// 	animation.addByIndices('idlePost', 'BF idle dance', [8, 9, 10, 11, 12, 13, 14], "", 24, true);
+			// 	animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+			// 	animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+			// 	animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+			// 	animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+			// 	animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
+			// 	animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+			// 	animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+			// 	animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
 
-				playAnim('idle');
+			// 	playAnim('idle');
 
-				flipX = true;
+			// 	flipX = true;
 			case 'bf-pixel':
 				frames = Paths.getSparrowAtlas('characters/bfPixel');
 				animation.addByPrefix('idle', 'BF IDLE', 24, false);
