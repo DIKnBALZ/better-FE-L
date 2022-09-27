@@ -436,7 +436,7 @@ class Character extends FNFSprite
 				playAnim('idle');
 			default:
 				var script:HScript = new HScript('characters/$curCharacter/Character');
-				character.frames = Paths.getCharacterSparrow(character.curCharacter);
+				frames = Paths.getCharacterSparrow(curCharacter);
 				script.setVariable("character", this);
 				script.setVariable("characterData", characterData);
 				script.setVariable("Paths", Paths);

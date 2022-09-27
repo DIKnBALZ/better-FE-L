@@ -137,6 +137,40 @@ class Paths
 		return null;
 	}
 
+	public static function coolerReturnGraphic(key:String, ?library:String, ?textureCompression:Bool = false)
+	{
+		var path = getPath('$key.png', IMAGE, library);
+		if (FileSystem.exists(path))
+		{
+			if (!currentTrackedAssets.exists(key))
+			{
+				var bitmap = BitmapData.fromFile(path);
+				var newGraphic:FlxGraphic;
+				if (textureCompression)
+				{
+					var texture = FlxG.stage.context3D.createTexture(bitmap.width, bitmap.height, BGRA, true, 0);
+					texture.uploadFromBitmapData(bitmap);
+					currentTrackedTextures.set(key, texture);
+					bitmap.dispose();
+					bitmap.disposeImage();
+					bitmap = null;
+					trace('new texture $key, bitmap is $bitmap');
+					newGraphic = FlxGraphic.fromBitmapData(BitmapData.fromTexture(texture), false, key, false);
+				}
+				else
+				{
+					newGraphic = FlxGraphic.fromBitmapData(bitmap, false, key, false);
+					trace('new bitmap $key, not textured');
+				}
+				currentTrackedAssets.set(key, newGraphic);
+			}
+			localTrackedAssets.push(key);
+			return currentTrackedAssets.get(key);
+		}
+		trace('oh no ' + key + ' is returning null NOOOO');
+		return null;
+	}
+
 	public static function returnSound(path:String, key:String, ?library:String)
 	{
 		var gottenPath:String = getPath('$path/$key.$SOUND_EXT', SOUND, library);
@@ -199,7 +233,7 @@ class Paths
 
 	inline static public function offsetTxt(key:String, ?library:String)
 	{
-		return getPath('characters/$key.txt', TEXT, library);
+		return file('characters/$key.txt', library);
 	}
 
 	inline static public function json(key:String, ?library:String)
@@ -265,7 +299,7 @@ class Paths
 
 	inline static public function getCharacterSparrow(key:String, ?library:String)
 	{
-		var graphic:FlxGraphic = returnGraphic(key, library);
+		var graphic:FlxGraphic = coolerReturnGraphic('characters/$key/spritesheet', library);
 		return (FlxAtlasFrames.fromSparrow(graphic, File.getContent(file('characters/$key/spritesheet.xml', library))));
 	}
 }
