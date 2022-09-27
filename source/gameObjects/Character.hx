@@ -28,6 +28,8 @@ typedef CharacterData =
 
 class Character extends FNFSprite
 {
+	var script:HScript;
+
 	public var debugMode:Bool = false;
 
 	public var isPlayer:Bool = false;
@@ -55,7 +57,8 @@ class Character extends FNFSprite
 			offsetX: 0,
 			camOffsetY: 0,
 			camOffsetX: 0,
-			quickDancer: false
+			quickDancer: false,
+			danceType: "normal"
 		};
 
 		switch (curCharacter)
@@ -435,7 +438,7 @@ class Character extends FNFSprite
 
 				playAnim('idle');
 			default:
-				var script:HScript = new HScript('characters/$curCharacter/Character');
+				script = new HScript('characters/$curCharacter/Character');
 				frames = Paths.getCharacterSparrow(curCharacter);
 				script.setVariable("character", this);
 				script.setVariable("characterData", characterData);
@@ -535,10 +538,12 @@ class Character extends FNFSprite
 		super.update(elapsed);
 	}
 
-	private var danced:Bool = false;
+	var danced:Bool = false;
 
 	// FOR GF DANCING SHIT
 	public function dance(?forced:Bool = false) {
+		
+
 		if (!debugMode) {
 			// HEY HEY HEY HEY HEYNHEYNHE YNHEYNEHYEHEYHE
 			// don't delete this part ima need to port these lol! -wiz

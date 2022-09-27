@@ -64,30 +64,11 @@ class Stage extends FlxTypedGroup<FlxBasic>
 		/// get hardcoded stage type if chart is fnf style
 		if (PlayState.determinedChartType == "FNF")
 		{
-			// this is because I want to avoid editing the fnf chart type
-			// custom stage stuffs will come with forever charts
-			switch (CoolUtil.spaceToDash(PlayState.SONG.song.toLowerCase())) {
-				case 'spookeez' | 'south' | 'monster':
-					curStage = 'spooky';
-				case 'pico' | 'blammed' | 'philly-nice':
-					curStage = 'philly';
-				case 'milf' | 'satin-panties' | 'high':
-					curStage = 'highway';
-				case 'cocoa' | 'eggnog':
-					curStage = 'mall';
-				case 'winter-horrorland':
-					curStage = 'mallEvil';
-				case 'senpai' | 'roses':
-					curStage = 'school';
-				case 'thorns':
-					curStage = 'schoolEvil';
-				case 'ugh' | 'guns' | 'stress':
-					curStage = 'tank';
-				default:
-					curStage = 'stage';
-			}
-
-			PlayState.curStage = curStage;
+			var tempScript:HScript = new HScript('other/song_stages');
+			tempScript.setVariable("CoolUtil", CoolUtil);
+			tempScript.setVariable("PlayState", PlayState);
+			tempScript.setVariable("curStage", curStage);
+			tempScript.create();
 		}
 
 		// to apply to foreground use foreground.add(); instead of add();

@@ -15,3 +15,13 @@ function create() {
 
     character.playAnim('danceRight');
 }
+
+function dance(?forced:Bool) {
+    if ((!character.animation.curAnim.name.startsWith('hair')) && (!character.animation.curAnim.name.startsWith('sad'))) {
+        danced = !danced;
+        if (danced)
+            character.playAnim('danceRight', true);
+        else
+            character.playAnim('danceLeft', true);
+    }
+}
