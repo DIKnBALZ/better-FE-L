@@ -502,26 +502,20 @@ class Character extends FNFSprite
 		}
 	}
 
-	override function update(elapsed:Float)
-	{
-		if (!isPlayer)
-		{
+	override function update(elapsed:Float) {
+		if (!isPlayer) {
 			if (animation.curAnim.name.startsWith('sing'))
-			{
 				holdTimer += elapsed;
-			}
 
 			var dadVar:Float = 4;
-			if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001)
-			{
+			if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001) {
 				dance();
 				holdTimer = 0;
 			}
 		}
 
 		var curCharSimplified:String = simplifyCharacter();
-		switch (curCharSimplified)
-		{
+		switch (curCharSimplified) {
 			case 'gf':
 				if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
 					playAnim('danceRight');
@@ -543,49 +537,41 @@ class Character extends FNFSprite
 
 	private var danced:Bool = false;
 
-	/**
-	 * FOR GF DANCING SHIT
-	 */
-	public function dance(?forced:Bool = false)
-	{
-		if (!debugMode)
-		{
-			var curCharSimplified:String = simplifyCharacter();
-			switch (curCharSimplified)
-			{
-				case 'gf':
-					if ((!animation.curAnim.name.startsWith('hair')) && (!animation.curAnim.name.startsWith('sad')))
-					{
-						danced = !danced;
+	// FOR GF DANCING SHIT
+	public function dance(?forced:Bool = false) {
+		if (!debugMode) {
+			// HEY HEY HEY HEY HEYNHEYNHE YNHEYNEHYEHEYHE
+			// don't delete this part ima need to port these lol! -wiz
 
-						if (danced)
-							playAnim('danceRight', forced);
-						else
-							playAnim('danceLeft', forced);
-					}
-				default:
-					// Left/right dancing, think Skid & Pump
-					if (animation.getByName('danceLeft') != null && animation.getByName('danceRight') != null)
-					{
-						danced = !danced;
-						if (danced)
-							playAnim('danceRight', forced);
-						else
-							playAnim('danceLeft', forced);
-					}
-					else
-						playAnim('idle', forced);
-			}
+			// var curCharSimplified:String = simplifyCharacter();
+			// switch (curCharSimplified)
+			// {
+				// case 'gf':
+				// 	if ((!animation.curAnim.name.startsWith('hair')) && (!animation.curAnim.name.startsWith('sad'))) {
+				// 		danced = !danced;
+				// 		if (danced)
+				// 			playAnim('danceRight', forced);
+				// 		else
+				// 			playAnim('danceLeft', forced);
+				// 	}
+				// default:
+				// 	// Left/right dancing, think Skid & Pump
+				// 	if (animation.getByName('danceLeft') != null && animation.getByName('danceRight') != null) {
+				// 		danced = !danced;
+				// 		if (danced)
+				// 			playAnim('danceRight', forced);
+				// 		else
+				// 			playAnim('danceLeft', forced);
+				// 	} else
+				// 		playAnim('idle', forced);
+			// }
 		}
 	}
 
-	override public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
-	{
+	override public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void {
 		if (animation.getByName(AnimName) != null)
 			super.playAnim(AnimName, Force, Reversed, Frame);
-
-		if (curCharacter == 'gf')
-		{
+		if (curCharacter == 'gf') {
 			if (AnimName == 'singLEFT')
 				danced = true;
 			else if (AnimName == 'singRIGHT')
@@ -596,10 +582,8 @@ class Character extends FNFSprite
 		}
 	}
 
-	public function simplifyCharacter():String
-	{
+	public function simplifyCharacter():String {
 		var base = curCharacter;
-
 		if (base.contains('-'))
 			base = base.substring(0, base.indexOf('-'));
 		return base;
