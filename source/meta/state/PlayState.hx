@@ -218,7 +218,12 @@ class PlayState extends MusicBeatState
 		popUpCombo(true);
 		//
 
-		stageBuild = new Stage(curStage);
+		var tempScript:HScript = new HScript('other/song_stages');
+		tempScript.setVariable("CoolUtil", CoolUtil);
+		tempScript.setVariable("PlayState", PlayState);
+		tempScript.create([CoolUtil.spaceToDash(SONG.song.toLowerCase())]);
+
+		stageBuild = new Stage(tempScript.getVariable("curStage") != null ? tempScript.getVariable("curStage") : curStage);
 		add(stageBuild);
 
 		if (FileSystem.exists('assets/global_scripts')) {
@@ -1089,7 +1094,7 @@ class PlayState extends MusicBeatState
 		// if (coolNote.foreverMods.get('string')[0] != "")
 		//	stringArrow = coolNote.noteString;
 
-		character.playAnim(stringArrow, true);
+		character.playAnim(stringArrow, true, false, coolNote.isSustainNote ? 1 : 0);
 		character.holdTimer = 0;
 	}
 

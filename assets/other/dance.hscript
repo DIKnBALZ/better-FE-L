@@ -1,0 +1,30 @@
+function create() {
+}
+
+function dance(?forced:Bool = false) {
+        switch(characterData.danceType) {
+                case "normal":
+                        if (character.animation.getByName('danceLeft') != null && character.animation.getByName('danceRight') != null)
+                        {
+                                character.danced = !character.danced;
+                                if (character.danced) {
+                                        character.playAnim('danceRight', forced);
+                                } else {
+                                        character.playAnim('danceLeft', forced);
+                                }
+                        }
+                        else {
+                                character.playAnim('idle', forced);
+                        }
+                case "gf":
+                        if ((!StringTools.startsWith(character.animation.curAnim.name, 'hair')) && (!StringTools.startsWith(character.animation.curAnim.name, 'sad')))
+                        {
+                                character.danced = !character.danced;
+                                if (character.danced) {
+                                        character.playAnim('danceRight', true);
+                                } else {
+                                        character.playAnim('danceLeft', true);
+                                }
+                        }
+        }
+}

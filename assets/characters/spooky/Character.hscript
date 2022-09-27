@@ -10,16 +10,6 @@ function create() {
 
         characterData.quickDancer = true;
 
+	characterData.danceType = "normal";
         character.playAnim('danceRight');
-}
-
-function dance(?forced:Bool) {
-	if (character.animation.getByName('danceLeft') != null && character.animation.getByName('danceRight') != null) {
-		danced = !danced;
-		if (danced)
-			character.playAnim('danceRight', forced);
-		else
-			character.playAnim('danceLeft', forced);
-	} else
-		character.playAnim('idle', forced);
 }

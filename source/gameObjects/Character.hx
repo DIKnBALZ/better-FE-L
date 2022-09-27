@@ -24,6 +24,7 @@ typedef CharacterData =
 	var camOffsetX:Float;
 	var camOffsetY:Float;
 	var quickDancer:Bool;
+	var danceType:String;
 }
 
 class Character extends FNFSprite
@@ -526,25 +527,26 @@ class Character extends FNFSprite
 					playAnim('danceLeft');
 		}
 
-		// Post idle animation (think Week 4 and how the player and mom's hair continues to sway after their idle animations are done!)
-		if (animation.curAnim.finished && animation.curAnim.name == 'idle')
+		if (animation.curAnim.finished && animation.getByName('${animation.curAnim.name}Post') != null)
 		{
-			// We look for an animation called 'idlePost' to switch to
-			if (animation.getByName('idlePost') != null)
-				// (( WE DON'T USE 'PLAYANIM' BECAUSE WE WANT TO FEED OFF OF THE IDLE OFFSETS! ))
-				animation.play('idlePost', true, false, 0);
+			animation.play('idlePost', true, false, 0);
 		}
 
 		super.update(elapsed);
 	}
 
-	var danced:Bool = false;
+	public var danced:Bool = false;
+	var danceScript:HScript = new HScript('other/dance');
 
 	// FOR GF DANCING SHIT
 	public function dance(?forced:Bool = false) {
-		
-
 		if (!debugMode) {
+			danceScript.setVariable("character", this);
+			danceScript.setVariable("characterData", characterData);
+			danceScript.setVariable("StringTools", StringTools);
+			danceScript.create();
+			danceScript.callFunction("dance", [forced]);
+
 			// HEY HEY HEY HEY HEYNHEYNHE YNHEYNEHYEHEYHE
 			// don't delete this part ima need to port these lol! -wiz
 

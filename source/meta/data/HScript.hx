@@ -38,6 +38,8 @@ class HScript
 
 			setVariable("trace", function(a) { trace(a); });
 			setVariable("state", flixel.FlxG.state);
+			setVariable("Main", Main);
+			setVariable("FlxAxes", flixel.util.FlxAxes);
 			setVariable("FlxSprite", flixel.FlxSprite);
 			setVariable("FlxG", flixel.FlxG);
 			setVariable("Paths", Paths);

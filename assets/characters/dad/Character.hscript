@@ -5,16 +5,6 @@ function create() {
         character.animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
         character.animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
 
+	characterData.danceType = "normal";
         character.playAnim('idle');
-}
-
-function dance(?forced:Bool) {
-	if (character.animation.getByName('danceLeft') != null && character.animation.getByName('danceRight') != null) {
-		danced = !danced;
-		if (danced)
-			character.playAnim('danceRight', forced);
-		else
-			character.playAnim('danceLeft', forced);
-	} else
-		character.playAnim('idle', forced);
 }

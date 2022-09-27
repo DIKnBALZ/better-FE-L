@@ -15,16 +15,6 @@ function create() {
 
 	character.flipX = true;
 
+	characterData.danceType = "normal";
 	character.characterData.offsetY = 70;
-}
-
-function dance(?forced:Bool) {
-	if (character.animation.getByName('danceLeft') != null && character.animation.getByName('danceRight') != null) {
-		danced = !danced;
-		if (danced)
-			character.playAnim('danceRight', forced);
-		else
-			character.playAnim('danceLeft', forced);
-	} else
-		character.playAnim('idle', forced);
 }

@@ -61,16 +61,6 @@ class Stage extends FlxTypedGroup<FlxBasic>
 		super();
 		this.curStage = curStage;
 
-		/// get hardcoded stage type if chart is fnf style
-		if (PlayState.determinedChartType == "FNF")
-		{
-			var tempScript:HScript = new HScript('other/song_stages');
-			tempScript.setVariable("CoolUtil", CoolUtil);
-			tempScript.setVariable("PlayState", PlayState);
-			tempScript.setVariable("curStage", curStage);
-			tempScript.create();
-		}
-
 		// to apply to foreground use foreground.add(); instead of add();
 		foreground = new FlxTypedGroup<FlxBasic>();
 

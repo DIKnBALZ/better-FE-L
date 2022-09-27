@@ -1,5 +1,9 @@
-function create() {
-        switch (CoolUtil.spaceToDash(PlayState.SONG.song.toLowerCase())) {
+var curStage:String;
+
+function create(curSong:String) {
+        switch (curSong) {
+                case 'tutorial' | 'bopeebo' | 'fresh' | 'dadbattle':
+                        curStage = 'stage';
                 case 'spookeez' | 'south' | 'monster':
                         curStage = 'spooky';
                 case 'pico' | 'blammed' | 'philly-nice':
@@ -18,5 +22,6 @@ function create() {
                         curStage = 'tank';
                 default:
                         curStage = 'stage';
+                        trace("you didnt set the stage for your song lol!");
         }
 }
