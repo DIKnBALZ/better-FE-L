@@ -5,6 +5,11 @@ function create() {
         character.animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
         character.animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
 
+        character.addOffset('singUP', -6, 50);
+        character.addOffset('singRIGHT', 0, 27);
+        character.addOffset('singLEFT', -10, 10);
+        character.addOffset('singDOWN', 0, -30);
+
 	characterData.danceType = "normal";
         character.playAnim('idle');
 }

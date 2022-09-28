@@ -1,9 +1,5 @@
 package gameObjects;
 
-/**
-	The character class initialises any and all characters that exist within gameplay. For now, the character class will
-	stay the same as it was in the original source of the game. I'll most likely make some changes afterwards though!
-**/
 import flixel.FlxG;
 import flixel.addons.util.FlxSimplex;
 import flixel.animation.FlxBaseAnimation;
@@ -64,54 +60,6 @@ class Character extends FNFSprite
 
 		switch (curCharacter)
 		{
-			// case 'gf':
-			// 	// GIRLFRIEND CODE
-			// 	tex = Paths.getSparrowAtlas('characters/GF_assets');
-			// 	frames = tex;
-			// 	animation.addByPrefix('cheer', 'GF Cheer', 24, false);
-			// 	animation.addByPrefix('singLEFT', 'GF left note', 24, false);
-			// 	animation.addByPrefix('singRIGHT', 'GF Right Note', 24, false);
-			// 	animation.addByPrefix('singUP', 'GF Up Note', 24, false);
-			// 	animation.addByPrefix('singDOWN', 'GF Down Note', 24, false);
-			// 	animation.addByIndices('sad', 'gf sad', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "", 24, false);
-			// 	animation.addByIndices('danceLeft', 'GF Dancing Beat', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-			// 	animation.addByIndices('danceRight', 'GF Dancing Beat', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-			// 	animation.addByIndices('hairBlow', "GF Dancing Beat Hair blowing", [0, 1, 2, 3], "", 24);
-			// 	animation.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "", 24, false);
-			// 	animation.addByPrefix('scared', 'GF FEAR', 24);
-
-			// 	playAnim('danceRight');
-
-			// case 'gf-christmas':
-			// 	tex = Paths.getSparrowAtlas('characters/gfChristmas');
-			// 	frames = tex;
-			// 	animation.addByPrefix('cheer', 'GF Cheer', 24, false);
-			// 	animation.addByPrefix('singLEFT', 'GF left note', 24, false);
-			// 	animation.addByPrefix('singRIGHT', 'GF Right Note', 24, false);
-			// 	animation.addByPrefix('singUP', 'GF Up Note', 24, false);
-			// 	animation.addByPrefix('singDOWN', 'GF Down Note', 24, false);
-			// 	animation.addByIndices('sad', 'gf sad', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "", 24, false);
-			// 	animation.addByIndices('danceLeft', 'GF Dancing Beat', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-			// 	animation.addByIndices('danceRight', 'GF Dancing Beat', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-			// 	animation.addByIndices('hairBlow', "GF Dancing Beat Hair blowing", [0, 1, 2, 3], "", 24);
-			// 	animation.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "", 24, false);
-			// 	animation.addByPrefix('scared', 'GF FEAR', 24);
-
-			// 	playAnim('danceRight');
-
-			// case 'gf-car':
-			// 	tex = Paths.getSparrowAtlas('characters/gfCar');
-			// 	frames = tex;
-			// 	animation.addByIndices('singUP', 'GF Dancing Beat Hair blowing CAR', [0], "", 24, false);
-			// 	animation.addByIndices('danceLeft', 'GF Dancing Beat Hair blowing CAR', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-			// 	animation.addByIndices('danceRight', 'GF Dancing Beat Hair blowing CAR', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24,
-			// 		false);
-
-			// 	addOffset('danceLeft', 0);
-			// 	addOffset('danceRight', 0);
-
-			// 	playAnim('danceRight');
-
 			case 'gf-pixel':
 				tex = Paths.getSparrowAtlas('characters/gfPixel');
 				frames = tex;
@@ -217,51 +165,6 @@ class Character extends FNFSprite
 				playAnim('idle');
 
 				flipX = true;
-
-			// case 'bf':
-			// 	frames = Paths.getSparrowAtlas('characters/BOYFRIEND');
-
-			// 	animation.addByPrefix('idle', 'BF idle dance', 24, false);
-			// 	animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-			// 	animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-			// 	animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
-			// 	animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-			// 	animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-			// 	animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-			// 	animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
-			// 	animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
-			// 	animation.addByPrefix('hey', 'BF HEY', 24, false);
-			// 	animation.addByPrefix('scared', 'BF idle shaking', 24);
-
-			// 	playAnim('idle');
-
-			// 	flipX = true;
-
-			// 	characterData.offsetY = 70;
-			/*
-				case 'bf-og':
-					frames = Paths.getSparrowAtlas('characters/og/BOYFRIEND');
-
-					animation.addByPrefix('idle', 'BF idle dance', 24, false);
-					animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-					animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-					animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
-					animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-					animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-					animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-					animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
-					animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
-					animation.addByPrefix('hey', 'BF HEY', 24, false);
-					animation.addByPrefix('scared', 'BF idle shaking', 24);
-					animation.addByPrefix('firstDeath', "BF dies", 24, false);
-					animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
-					animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
-
-					playAnim('idle');
-
-					flipX = true;
-			 */
-
 			case 'bf-dead':
 				frames = Paths.getSparrowAtlas('characters/BF_DEATH');
 
@@ -448,15 +351,15 @@ class Character extends FNFSprite
 		}
 
 		// set up offsets cus why not
-		if (OpenFlAssets.exists(Paths.offsetTxt(curCharacter + 'Offsets')))
-		{
-			var characterOffsets:Array<String> = CoolUtil.coolTextFile(Paths.offsetTxt(curCharacter + 'Offsets'));
-			for (i in 0...characterOffsets.length)
-			{
-				var getterArray:Array<Array<String>> = CoolUtil.getOffsetsFromTxt(Paths.offsetTxt(curCharacter + 'Offsets'));
-				addOffset(getterArray[i][0], Std.parseInt(getterArray[i][1]), Std.parseInt(getterArray[i][2]));
-			}
-		}
+		// if (OpenFlAssets.exists(Paths.offsetTxt(curCharacter + 'Offsets')))
+		// {
+		// 	var characterOffsets:Array<String> = CoolUtil.coolTextFile(Paths.offsetTxt(curCharacter + 'Offsets'));
+		// 	for (i in 0...characterOffsets.length)
+		// 	{
+		// 		var getterArray:Array<Array<String>> = CoolUtil.getOffsetsFromTxt(Paths.offsetTxt(curCharacter + 'Offsets'));
+		// 		addOffset(getterArray[i][0], Std.parseInt(getterArray[i][1]), Std.parseInt(getterArray[i][2]));
+		// 	}
+		// }
 
 		dance();
 
