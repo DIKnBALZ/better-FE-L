@@ -221,7 +221,7 @@ class FreeplayState extends MusicBeatState
 		if (controls.BACK)
 		{
 			threadActive = false;
-			Main.switchState(this, new CustomMusicBeatState("FNFMainMenu"));
+			Main.switchState(this, new MainMenuState());
 		}
 
 		if (accepted)
