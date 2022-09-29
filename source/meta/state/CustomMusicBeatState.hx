@@ -2,13 +2,14 @@ package meta.state;
 
 import flixel.FlxState;
 import meta.*;
+import meta.MusicBeat.MusicBeatState;
 import meta.data.*;
 
 class CustomMusicBeatState extends MusicBeatState
 {
 	var script:HScript;
 
-	override public function new(name:String, args:Array<Dynamic>)
+	override public function new(name:String, ?args:Array<Dynamic>)
 	{
 		super();
 
@@ -26,12 +27,12 @@ class CustomMusicBeatState extends MusicBeatState
 	override public function stepHit()
 	{
 		super.stepHit();
-		script.stepHit();
+		script.stepHit(curStep);
 	}
 
 	override public function beatHit()
 	{
 		super.beatHit();
-		script.beatHit();
+		script.beatHit(curBeat);
 	}
 }

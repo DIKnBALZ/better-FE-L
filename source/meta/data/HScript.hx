@@ -44,6 +44,9 @@ class HScript
 			setVariable("FlxG", flixel.FlxG);
 			setVariable("Paths", Paths);
 			setVariable("Std", Std);
+			setVariable("Math", Math);
+			setVariable("ForeverTools", ForeverTools);
+			setVariable("Controls", meta.Controls);
 			setVariable("add", function(obj:FlxBasic) {flixel.FlxG.state.add(obj);});
 			setVariable("FlxColor", HScriptClasses.getFlxColorClass());
 			setVariable("BlendMode", HScriptClasses.getBlendModeClass());

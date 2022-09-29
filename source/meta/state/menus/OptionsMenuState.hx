@@ -306,7 +306,7 @@ class OptionsMenuState extends MusicBeatState
 			if (curCategory != 'main')
 				loadSubgroup('main');
 			else
-				Main.switchState(this, new MainMenuState());
+				Main.switchState(this, new CustomMusicBeatState("FNFMainMenu", []));
 		}
 	}
 
@@ -584,7 +584,7 @@ class OptionsMenuState extends MusicBeatState
 			lockedMovement = true;
 			FlxFlicker.flicker(activeSubgroup.members[curSelection], 0.5, 0.06 * 2, true, false, function(flick:FlxFlicker)
 			{
-				Main.switchState(this, new MainMenuState());
+				Main.switchState(this, new CustomMusicBeatState("FNFMainMenu", []));
 				lockedMovement = false;
 			});
 		}
