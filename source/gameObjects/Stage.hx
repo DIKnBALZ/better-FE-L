@@ -65,13 +65,13 @@ class Stage extends FlxTypedGroup<FlxBasic>
 		foreground = new FlxTypedGroup<FlxBasic>();
 
 		//
-		switch (curStage)
+		switch (this.curStage)
 		{
 			case 'spooky':
-				curStage = 'spooky';
+				this.curStage = 'spooky';
 				// halloweenLevel = true;
 
-				var hallowTex = Paths.getSparrowAtlas('backgrounds/' + curStage + '/halloween_bg');
+				var hallowTex = Paths.getSparrowAtlas('backgrounds/' + this.curStage + '/halloween_bg');
 
 				halloweenBG = new FNFSprite(-200, -100);
 				halloweenBG.frames = hallowTex;
@@ -83,13 +83,13 @@ class Stage extends FlxTypedGroup<FlxBasic>
 
 			// isHalloween = true;
 			case 'philly':
-				curStage = 'philly';
+				this.curStage = 'philly';
 
-				var bg:FNFSprite = new FNFSprite(-100).loadGraphic(Paths.image('backgrounds/' + curStage + '/sky'));
+				var bg:FNFSprite = new FNFSprite(-100).loadGraphic(Paths.image('backgrounds/' + this.curStage + '/sky'));
 				bg.scrollFactor.set(0.1, 0.1);
 				add(bg);
 
-				var city:FNFSprite = new FNFSprite(-10).loadGraphic(Paths.image('backgrounds/' + curStage + '/city'));
+				var city:FNFSprite = new FNFSprite(-10).loadGraphic(Paths.image('backgrounds/' + this.curStage + '/city'));
 				city.scrollFactor.set(0.3, 0.3);
 				city.setGraphicSize(Std.int(city.width * 0.85));
 				city.updateHitbox();
@@ -100,7 +100,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 
 				for (i in 0...5)
 				{
-					var light:FNFSprite = new FNFSprite(city.x).loadGraphic(Paths.image('backgrounds/' + curStage + '/win' + i));
+					var light:FNFSprite = new FNFSprite(city.x).loadGraphic(Paths.image('backgrounds/' + this.curStage + '/win' + i));
 					light.scrollFactor.set(0.3, 0.3);
 					light.visible = false;
 					light.setGraphicSize(Std.int(light.width * 0.85));
@@ -109,10 +109,10 @@ class Stage extends FlxTypedGroup<FlxBasic>
 					phillyCityLights.add(light);
 				}
 
-				var streetBehind:FNFSprite = new FNFSprite(-40, 50).loadGraphic(Paths.image('backgrounds/' + curStage + '/behindTrain'));
+				var streetBehind:FNFSprite = new FNFSprite(-40, 50).loadGraphic(Paths.image('backgrounds/' + this.curStage + '/behindTrain'));
 				add(streetBehind);
 
-				phillyTrain = new FNFSprite(2000, 360).loadGraphic(Paths.image('backgrounds/' + curStage + '/train'));
+				phillyTrain = new FNFSprite(2000, 360).loadGraphic(Paths.image('backgrounds/' + this.curStage + '/train'));
 				add(phillyTrain);
 
 				trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes'));
@@ -120,18 +120,18 @@ class Stage extends FlxTypedGroup<FlxBasic>
 
 				// var cityLights:FNFSprite = new FNFSprite().loadGraphic(AssetPaths.win0.png);
 
-				var street:FNFSprite = new FNFSprite(-40, streetBehind.y).loadGraphic(Paths.image('backgrounds/' + curStage + '/street'));
+				var street:FNFSprite = new FNFSprite(-40, streetBehind.y).loadGraphic(Paths.image('backgrounds/' + this.curStage + '/street'));
 				add(street);
 			case 'highway':
-				curStage = 'highway';
+				this.curStage = 'highway';
 				PlayState.defaultCamZoom = 0.90;
 
-				var skyBG:FNFSprite = new FNFSprite(-120, -50).loadGraphic(Paths.image('backgrounds/' + curStage + '/limoSunset'));
+				var skyBG:FNFSprite = new FNFSprite(-120, -50).loadGraphic(Paths.image('backgrounds/' + this.curStage + '/limoSunset'));
 				skyBG.scrollFactor.set(0.1, 0.1);
 				add(skyBG);
 
 				var bgLimo:FNFSprite = new FNFSprite(-200, 480);
-				bgLimo.frames = Paths.getSparrowAtlas('backgrounds/' + curStage + '/bgLimo');
+				bgLimo.frames = Paths.getSparrowAtlas('backgrounds/' + this.curStage + '/bgLimo');
 				bgLimo.animation.addByPrefix('drive', "background limo pink", 24);
 				bgLimo.animation.play('drive');
 				bgLimo.scrollFactor.set(0.4, 0.4);
@@ -147,7 +147,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 					grpLimoDancers.add(dancer);
 				}
 
-				var overlayShit:FNFSprite = new FNFSprite(-500, -600).loadGraphic(Paths.image('backgrounds/' + curStage + '/limoOverlay'));
+				var overlayShit:FNFSprite = new FNFSprite(-500, -600).loadGraphic(Paths.image('backgrounds/' + this.curStage + '/limoOverlay'));
 				overlayShit.alpha = 0.5;
 				// add(overlayShit);
 
@@ -157,7 +157,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 
 				// overlayShit.shader = shaderBullshit;
 
-				var limoTex = Paths.getSparrowAtlas('backgrounds/' + curStage + '/limoDrive');
+				var limoTex = Paths.getSparrowAtlas('backgrounds/' + this.curStage + '/limoDrive');
 
 				limo = new FNFSprite(-120, 550);
 				limo.frames = limoTex;
@@ -165,7 +165,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				limo.animation.play('drive');
 				limo.antialiasing = true;
 
-				fastCar = new FNFSprite(-300, 160).loadGraphic(Paths.image('backgrounds/' + curStage + '/fastCarLol'));
+				fastCar = new FNFSprite(-300, 160).loadGraphic(Paths.image('backgrounds/' + this.curStage + '/fastCarLol'));
 			// loadArray.add(limo);
 
 			// case 'tank':
@@ -248,14 +248,14 @@ class Stage extends FlxTypedGroup<FlxBasic>
 			// 	foregroundSprites.add(tankdude3);
 
 			default:
-				script = new HScript('stages/$curStage');
+				script = new HScript('stages/${this.curStage}');
 				script.setVariable("FNFSprite", FNFSprite);
 				script.setVariable("BackgroundGirls", BackgroundGirls);
 				script.setVariable("BackgroundDancer", BackgroundDancer);
 				script.setVariable("PlayState", PlayState);
 				script.setVariable("Paths", Paths);
 				script.setVariable("Std", Std);
-				script.setVariable("curStage", curStage);
+				script.setVariable("curStage", this.curStage);
 				script.setVariable("gfVersion", gfVersion);
 				script.setVariable("foreground", foreground);
 				script.setVariable("add", function(obj:FlxBasic) {add(obj);});

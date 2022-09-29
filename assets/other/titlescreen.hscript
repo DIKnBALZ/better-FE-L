@@ -42,7 +42,7 @@ function beatHit() {
 }
 
 function update(elapsed:Float) {
-        if (pressedEnter && !transitioning && skippedIntro) {
+        if (FlxG.keys.justPressed.ENTER && !transitioning && skippedIntro) {
                 titleText.animation.play('press');
 
                 FlxG.camera.flash(FlxColor.WHITE, 1);
