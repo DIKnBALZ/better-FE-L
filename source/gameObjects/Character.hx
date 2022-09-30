@@ -12,9 +12,7 @@ import meta.state.PlayState;
 import openfl.utils.Assets as OpenFlAssets;
 
 using StringTools;
-
-typedef CharacterData =
-{
+typedef CharacterData = {
 	var offsetX:Float;
 	var offsetY:Float;
 	var camOffsetX:Float;
@@ -23,32 +21,26 @@ typedef CharacterData =
 	var danceType:String;
 }
 
-class Character extends FNFSprite
-{
+class Character extends FNFSprite {
 	var script:HScript;
-
-	public var debugMode:Bool = false;
-
-	public var isPlayer:Bool = false;
+	
 	public var curCharacter:String = 'bf';
-
-	public var holdTimer:Float = 0;
-
 	public var characterData:CharacterData;
-	public var adjustPos:Bool = true;
+	
+	public var isPlayer:Bool = false; // these shits are used in other places so
+	public var holdTimer:Float = 0;
+	public var adjustPos:Bool = true; // may remove soon (it seems to be useless!)
 
-	public function new(?isPlayer:Bool = false)
-	{
+	public function new(?isPlayer:Bool = false) {
 		super(x, y);
 		this.isPlayer = isPlayer;
 	}
 
-	public function setCharacter(x:Float, y:Float, character:String):Character
-	{
+	public function setCharacter(x:Float, y:Float, character:String):Character {
 		curCharacter = character;
+		
 		var tex:FlxAtlasFrames;
 		antialiasing = true;
-
 		characterData = {
 			offsetY: 0,
 			offsetX: 0,
@@ -58,8 +50,7 @@ class Character extends FNFSprite
 			danceType: "normal"
 		};
 
-		switch (curCharacter)
-		{
+		switch (curCharacter) {
 			case 'mom':
 				tex = Paths.getSparrowAtlas('characters/Mom_Assets');
 				frames = tex;
@@ -68,11 +59,6 @@ class Character extends FNFSprite
 				animation.addByPrefix('singUP', "Mom Up Pose", 24, false);
 				animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
 				animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
-				// ANIMATION IS CALLED MOM LEFT POSE BUT ITS FOR THE RIGHT
-				// CUZ DAVE IS DUMB!
-
-				// maybe youre just dumb for not telling him to name it that
-				// dw im also dumb
 				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
 
 				playAnim('idle');
@@ -195,23 +181,6 @@ class Character extends FNFSprite
 				playAnim('idle');
 
 				flipX = true;
-			// case 'bf-car':
-			// 	var tex = Paths.getSparrowAtlas('characters/bfCar');
-			// 	frames = tex;
-			// 	animation.addByPrefix('idle', 'BF idle dance', 24, false);
-			// 	animation.addByIndices('idlePost', 'BF idle dance', [8, 9, 10, 11, 12, 13, 14], "", 24, true);
-			// 	animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-			// 	animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-			// 	animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
-			// 	animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-			// 	animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-			// 	animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-			// 	animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
-			// 	animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
-
-			// 	playAnim('idle');
-
-			// 	flipX = true;
 			case 'bf-pixel':
 				frames = Paths.getSparrowAtlas('characters/bfPixel');
 				animation.addByPrefix('idle', 'BF IDLE', 24, false);
@@ -325,34 +294,16 @@ class Character extends FNFSprite
 				script.setVariable("Paths", Paths);
 				script.create();
 		}
-
-		// set up offsets cus why not
-		// if (OpenFlAssets.exists(Paths.offsetTxt(curCharacter + 'Offsets')))
-		// {
-		// 	var characterOffsets:Array<String> = CoolUtil.coolTextFile(Paths.offsetTxt(curCharacter + 'Offsets'));
-		// 	for (i in 0...characterOffsets.length)
-		// 	{
-		// 		var getterArray:Array<Array<String>> = CoolUtil.getOffsetsFromTxt(Paths.offsetTxt(curCharacter + 'Offsets'));
-		// 		addOffset(getterArray[i][0], Std.parseInt(getterArray[i][1]), Std.parseInt(getterArray[i][2]));
-		// 	}
-		// }
-
 		dance();
 
-		if (isPlayer) // fuck you ninjamuffin lmao
-		{
+		if (isPlayer) {
 			flipX = !flipX;
-
-			// Doesn't flip for BF, since his are already in the right place???
 			if (!curCharacter.startsWith('bf'))
 				flipLeftRight();
-			//
-		}
-		else if (curCharacter.startsWith('bf'))
+		} else if (curCharacter.startsWith('bf'))
 			flipLeftRight();
 
-		if (adjustPos)
-		{
+		if (adjustPos) {
 			x += characterData.offsetX;
 			trace('character ${curCharacter} scale ${scale.y}');
 			y += (characterData.offsetY - (frameHeight * scale.y));
@@ -360,25 +311,15 @@ class Character extends FNFSprite
 
 		this.x = x;
 		this.y = y;
-
 		return this;
 	}
 
-	function flipLeftRight():Void
-	{
-		// get the old right sprite
+	function flipLeftRight():Void {
 		var oldRight = animation.getByName('singRIGHT').frames;
-
-		// set the right to the left
 		animation.getByName('singRIGHT').frames = animation.getByName('singLEFT').frames;
-
-		// set the left to the old right
 		animation.getByName('singLEFT').frames = oldRight;
 
-		// insert ninjamuffin screaming I think idk I'm lazy as hell
-
-		if (animation.getByName('singRIGHTmiss') != null)
-		{
+		if (animation.getByName('singRIGHTmiss') != null) {
 			var oldMiss = animation.getByName('singRIGHTmiss').frames;
 			animation.getByName('singRIGHTmiss').frames = animation.getByName('singLEFTmiss').frames;
 			animation.getByName('singLEFTmiss').frames = oldMiss;
@@ -407,56 +348,25 @@ class Character extends FNFSprite
 		}
 
 		if (animation.curAnim.finished && animation.getByName('${animation.curAnim.name}Post') != null)
-		{
 			animation.play('idlePost', true, false, 0);
-		}
 
 		super.update(elapsed);
 	}
 
-	public var danced:Bool = false;
 	var danceScript:HScript = new HScript('other/dance');
-
-	// FOR GF DANCING SHIT
 	public function dance(?forced:Bool = false) {
-		if (!debugMode) {
-			danceScript.setVariable("character", this);
-			danceScript.setVariable("characterData", characterData);
-			danceScript.setVariable("StringTools", StringTools);
-			danceScript.create();
-			danceScript.callFunction("dance", [forced]);
-
-			// HEY HEY HEY HEY HEYNHEYNHE YNHEYNEHYEHEYHE
-			// don't delete this part ima need to port these lol! -wiz
-
-			// var curCharSimplified:String = simplifyCharacter();
-			// switch (curCharSimplified)
-			// {
-				// case 'gf':
-				// 	if ((!animation.curAnim.name.startsWith('hair')) && (!animation.curAnim.name.startsWith('sad'))) {
-				// 		danced = !danced;
-				// 		if (danced)
-				// 			playAnim('danceRight', forced);
-				// 		else
-				// 			playAnim('danceLeft', forced);
-				// 	}
-				// default:
-				// 	// Left/right dancing, think Skid & Pump
-				// 	if (animation.getByName('danceLeft') != null && animation.getByName('danceRight') != null) {
-				// 		danced = !danced;
-				// 		if (danced)
-				// 			playAnim('danceRight', forced);
-				// 		else
-				// 			playAnim('danceLeft', forced);
-				// 	} else
-				// 		playAnim('idle', forced);
-			// }
-		}
+		danceScript.setVariable("character", this);
+		danceScript.setVariable("characterData", characterData);
+		danceScript.setVariable("StringTools", StringTools);
+		danceScript.create();
+		danceScript.callFunction("dance", [forced]);
 	}
-
+	
+	public var danced:Bool = false;
 	override public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void {
 		if (animation.getByName(AnimName) != null)
 			super.playAnim(AnimName, Force, Reversed, Frame);
+		
 		if (curCharacter == 'gf') {
 			if (AnimName == 'singLEFT')
 				danced = true;
