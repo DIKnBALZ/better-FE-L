@@ -230,10 +230,13 @@ class PlayState extends MusicBeatState
 			for (f in FileSystem.readDirectory('assets/global_scripts')) {
 				var script:HScript = new HScript(StringTools.replace('global_scripts/$f', '.hscript', ''));
 				script.setVariable("this", script);
+				script.setVariable("Stage", Stage);
 				script.setVariable("PlayState", this);
 				script.setVariable("Paths", Paths);
 				script.setVariable("Std", Std);
 				script.setVariable("curStage", curStage);
+				script.setVariable("CoolUtil", CoolUtil);
+				script.setVariable("PlayState", PlayState);
 				script.setVariable("add", function(obj:FlxBasic) {add(obj);});
 				script.create();
 				scripts.push(script);
@@ -244,10 +247,13 @@ class PlayState extends MusicBeatState
 			for (f in FileSystem.readDirectory('assets/songs/${SONG.song.toLowerCase()}/scripts')) {
 				var script:HScript = new HScript(StringTools.replace('songs/${SONG.song.toLowerCase()}/scripts/$f', '.hscript', ''));
 				script.setVariable("this", script);
+				script.setVariable("Stage", Stage);
 				script.setVariable("PlayState", this);
 				script.setVariable("Paths", Paths);
 				script.setVariable("Std", Std);
 				script.setVariable("curStage", curStage);
+				script.setVariable("CoolUtil", CoolUtil);
+				script.setVariable("PlayState", PlayState);
 				script.setVariable("add", function(obj:FlxBasic) {add(obj);});
 				script.create();
 				scripts.push(script);
