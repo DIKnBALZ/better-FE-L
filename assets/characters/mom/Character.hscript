@@ -1,0 +1,16 @@
+function create() {
+	character.animation.addByPrefix('idle', "Mom Idle", 24, false);
+	character.animation.addByPrefix('singUP', "Mom Up Pose", 24, false);
+	character.animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
+	character.animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
+	character.animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
+
+	character.addOffset('singUP', 14, 71);
+	character.addOffset('singRIGHT', 10, -60);
+	character.addOffset('singLEFT', 250, -23);
+	character.addOffset('singDOWN', 20, -160);
+
+	character.playAnim('idle');
+
+	characterData.camOffsetY = 100;
+}

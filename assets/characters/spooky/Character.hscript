@@ -13,6 +13,6 @@ function create() {
         character.addOffset('singDOWN', -50, -130);
 
         characterData.quickDancer = true;
-        characterData.danceType = "normal";
+        characterData.danceType = "gf";
         character.playAnim('danceRight');
 }

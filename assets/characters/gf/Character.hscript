@@ -22,6 +22,6 @@ function create() {
     character.addOffset('hairFall', 0, -9);
     character.addOffset('scared', -2, -17);
 
-    characterData.danceType = "gf";
+    character.characterData.danceType = "gf";
     character.playAnim('danceRight');
 }

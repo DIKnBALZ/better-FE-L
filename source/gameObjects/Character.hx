@@ -51,54 +51,54 @@ class Character extends FNFSprite {
 		};
 
 		switch (curCharacter) {
-			case 'mom':
-				tex = Paths.getSparrowAtlas('characters/Mom_Assets');
-				frames = tex;
+			// case 'mom':
+			// 	tex = Paths.getSparrowAtlas('characters/Mom_Assets');
+			// 	frames = tex;
 
-				animation.addByPrefix('idle', "Mom Idle", 24, false);
-				animation.addByPrefix('singUP', "Mom Up Pose", 24, false);
-				animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
-				animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
-				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
+			// 	animation.addByPrefix('idle', "Mom Idle", 24, false);
+			// 	animation.addByPrefix('singUP', "Mom Up Pose", 24, false);
+			// 	animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
+			// 	animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
+			// 	animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
 
-				playAnim('idle');
+			// 	playAnim('idle');
 
-				characterData.camOffsetY = 100;
-			case 'mom-car':
-				tex = Paths.getSparrowAtlas('characters/momCar');
-				frames = tex;
+			// 	characterData.camOffsetY = 100;
+			// case 'mom-car':
+			// 	tex = Paths.getSparrowAtlas('characters/momCar');
+			// 	frames = tex;
 
-				animation.addByPrefix('idle', "Mom Idle", 24, false);
-				animation.addByIndices('idlePost', 'Mom Idle', [10, 11, 12, 13], "", 24, true);
-				animation.addByPrefix('singUP', "Mom Up Pose", 24, false);
-				animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
-				animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
-				// ANIMATION IS CALLED MOM LEFT POSE BUT ITS FOR THE RIGHT
-				// CUZ DAVE IS DUMB!
-				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
+			// 	animation.addByPrefix('idle', "Mom Idle", 24, false);
+			// 	animation.addByIndices('idlePost', 'Mom Idle', [10, 11, 12, 13], "", 24, true);
+			// 	animation.addByPrefix('singUP', "Mom Up Pose", 24, false);
+			// 	animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
+			// 	animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
+			// 	// ANIMATION IS CALLED MOM LEFT POSE BUT ITS FOR THE RIGHT
+			// 	// CUZ DAVE IS DUMB!
+			// 	animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
 
-				playAnim('idle');
-			case 'monster':
-				tex = Paths.getSparrowAtlas('characters/Monster_Assets');
-				frames = tex;
-				animation.addByPrefix('idle', 'monster idle', 24, false);
-				animation.addByPrefix('singUP', 'monster up note', 24, false);
-				animation.addByPrefix('singDOWN', 'monster down', 24, false);
-				animation.addByPrefix('singLEFT', 'Monster Right note', 24, false);
-				animation.addByPrefix('singRIGHT', 'Monster left note', 24, false);
+			// 	playAnim('idle');
+			// case 'monster':
+			// 	tex = Paths.getSparrowAtlas('characters/Monster_Assets');
+			// 	frames = tex;
+			// 	animation.addByPrefix('idle', 'monster idle', 24, false);
+			// 	animation.addByPrefix('singUP', 'monster up note', 24, false);
+			// 	animation.addByPrefix('singDOWN', 'monster down', 24, false);
+			// 	animation.addByPrefix('singLEFT', 'Monster Right note', 24, false);
+			// 	animation.addByPrefix('singRIGHT', 'Monster left note', 24, false);
 
-				playAnim('idle');
+			// 	playAnim('idle');
 
-			case 'monster-christmas':
-				tex = Paths.getSparrowAtlas('characters/monsterChristmas');
-				frames = tex;
-				animation.addByPrefix('idle', 'monster idle', 24, false);
-				animation.addByPrefix('singUP', 'monster up note', 24, false);
-				animation.addByPrefix('singDOWN', 'monster down', 24, false);
-				animation.addByPrefix('singRIGHT', 'Monster left note', 24, false);
-				animation.addByPrefix('singLEFT', 'Monster Right note', 24, false);
+			// case 'monster-christmas':
+			// 	tex = Paths.getSparrowAtlas('characters/monsterChristmas');
+			// 	frames = tex;
+			// 	animation.addByPrefix('idle', 'monster idle', 24, false);
+			// 	animation.addByPrefix('singUP', 'monster up note', 24, false);
+			// 	animation.addByPrefix('singDOWN', 'monster down', 24, false);
+			// 	animation.addByPrefix('singRIGHT', 'Monster left note', 24, false);
+			// 	animation.addByPrefix('singLEFT', 'Monster Right note', 24, false);
 
-				playAnim('idle');
+			// 	playAnim('idle');
 			case 'pico':
 				tex = Paths.getSparrowAtlas('characters/Pico_FNF_assetss');
 				frames = tex;
