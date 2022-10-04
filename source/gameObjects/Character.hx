@@ -99,44 +99,44 @@ class Character extends FNFSprite {
 			// 	animation.addByPrefix('singLEFT', 'Monster Right note', 24, false);
 
 			// 	playAnim('idle');
-			case 'pico':
-				tex = Paths.getSparrowAtlas('characters/Pico_FNF_assetss');
-				frames = tex;
-				animation.addByPrefix('idle', "Pico Idle Dance", 24, false);
-				animation.addByPrefix('singUP', 'pico Up note0', 24, false);
-				animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
-				if (isPlayer)
-				{
-					animation.addByPrefix('singLEFT', 'Pico NOTE LEFT0', 24, false);
-					animation.addByPrefix('singRIGHT', 'Pico Note Right0', 24, false);
-					animation.addByPrefix('singRIGHTmiss', 'Pico Note Right Miss', 24, false);
-					animation.addByPrefix('singLEFTmiss', 'Pico NOTE LEFT miss', 24, false);
-				}
-				else
-				{
-					// Need to be flipped! REDO THIS LATER!
-					animation.addByPrefix('singLEFT', 'Pico Note Right0', 24, false);
-					animation.addByPrefix('singRIGHT', 'Pico NOTE LEFT0', 24, false);
-					animation.addByPrefix('singRIGHTmiss', 'Pico NOTE LEFT miss', 24, false);
-					animation.addByPrefix('singLEFTmiss', 'Pico Note Right Miss', 24, false);
-				}
+			// case 'pico':
+			// 	tex = Paths.getSparrowAtlas('characters/Pico_FNF_assetss');
+			// 	frames = tex;
+			// 	animation.addByPrefix('idle', "Pico Idle Dance", 24, false);
+			// 	animation.addByPrefix('singUP', 'pico Up note0', 24, false);
+			// 	animation.addByPrefix('singDOWN', 'Pico Down Note0', 24, false);
+			// 	if (isPlayer)
+			// 	{
+			// 		animation.addByPrefix('singLEFT', 'Pico NOTE LEFT0', 24, false);
+			// 		animation.addByPrefix('singRIGHT', 'Pico Note Right0', 24, false);
+			// 		animation.addByPrefix('singRIGHTmiss', 'Pico Note Right Miss', 24, false);
+			// 		animation.addByPrefix('singLEFTmiss', 'Pico NOTE LEFT miss', 24, false);
+			// 	}
+			// 	else
+			// 	{
+			// 		// Need to be flipped! REDO THIS LATER!
+			// 		animation.addByPrefix('singLEFT', 'Pico Note Right0', 24, false);
+			// 		animation.addByPrefix('singRIGHT', 'Pico NOTE LEFT0', 24, false);
+			// 		animation.addByPrefix('singRIGHTmiss', 'Pico NOTE LEFT miss', 24, false);
+			// 		animation.addByPrefix('singLEFTmiss', 'Pico Note Right Miss', 24, false);
+			// 	}
 
-				animation.addByPrefix('singUPmiss', 'pico Up note miss', 24);
-				animation.addByPrefix('singDOWNmiss', 'Pico Down Note MISS', 24);
+			// 	animation.addByPrefix('singUPmiss', 'pico Up note miss', 24);
+			// 	animation.addByPrefix('singDOWNmiss', 'Pico Down Note MISS', 24);
 
-				playAnim('idle');
+			// 	playAnim('idle');
 
-				flipX = true;
-			case 'bf-dead':
-				frames = Paths.getSparrowAtlas('characters/BF_DEATH');
+			// 	flipX = true;
+			// case 'bf-dead':
+			// 	frames = Paths.getSparrowAtlas('characters/BF_DEATH');
 
-				animation.addByPrefix('firstDeath', "BF dies", 24, false);
-				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
-				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
+			// 	animation.addByPrefix('firstDeath', "BF dies", 24, false);
+			// 	animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
+			// 	animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
 
-				playAnim('firstDeath');
+			// 	playAnim('firstDeath');
 
-				flipX = true;
+			// 	flipX = true;
 
 			case 'bf-holding-gf':
 				frames = Paths.getSparrowAtlas('characters/bfAndGF');
