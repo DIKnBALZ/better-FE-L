@@ -7,7 +7,7 @@ function songEndSpecificActions() {
                                 -FlxG.height * FlxG.camera.zoom).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
                         blackShit.scrollFactor.set();
                         add(blackShit);
-                        camHUD.visible = false;
+                        PlayState.camHUD.visible = false;
 
                         // oooo spooky
                         FlxG.sound.play(Paths.sound('Lights_Shut_off'));

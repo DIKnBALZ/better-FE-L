@@ -258,6 +258,7 @@ class PlayState extends MusicBeatState
 				script.setVariable("Std", Std);
 				script.setVariable("curStage", curStage);
 				script.setVariable("CoolUtil", CoolUtil);
+				script.setVariable("Conductor", Conductor);
 				script.setVariable("PlayState", PlayState);
 				script.setVariable("add", function(obj:FlxBasic) {add(obj);});
 				script.create();
@@ -275,6 +276,7 @@ class PlayState extends MusicBeatState
 				script.setVariable("Std", Std);
 				script.setVariable("curStage", curStage);
 				script.setVariable("CoolUtil", CoolUtil);
+				script.setVariable("Conductor", Conductor);
 				script.setVariable("PlayState", PlayState);
 				script.setVariable("add", function(obj:FlxBasic) {add(obj);});
 				script.create();
@@ -1777,6 +1779,7 @@ class PlayState extends MusicBeatState
 		script.setVariable("Std", Std);
 		script.setVariable("curStage", curStage);
 		script.setVariable("CoolUtil", CoolUtil);
+		script.setVariable("Conductor", Conductor);
 		script.setVariable("PlayState", PlayState);
 		script.setVariable("add", function(obj:FlxBasic) {add(obj);});
 		script.create();
