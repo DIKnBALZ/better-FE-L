@@ -34,7 +34,7 @@ class HealthIcon extends FlxSprite {
 		// var iconGraphic:FlxGraphic = Paths.image('icons/icon-' + iconPath);
 		var iconGraphic:FlxGraphic = Paths.coolerReturnGraphic('characters/$char/icons');
 		if (iconGraphic == null)
-			iconGraphic = 'bf'; // WHY IS THIS WRONG FUCK YOU HAXE- ok it might be line 40 :/
+			iconGraphic = Paths.coolerReturnGraphic('characters/bf/icons');
 		loadGraphic(iconGraphic, true, Std.int(iconGraphic.width / 2), iconGraphic.height);
 		antialiasing = true;
 		

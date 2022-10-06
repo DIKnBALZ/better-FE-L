@@ -1,4 +1,5 @@
 function create() {
+        assetModifier = 'pixel';
         var posX = 400;
         var posY = 200;
         var bg:FNFSprite = new FNFSprite(posX, posY);

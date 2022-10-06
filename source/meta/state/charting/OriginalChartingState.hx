@@ -269,6 +269,14 @@ class OriginalChartingState extends MusicBeatState
 		});
 		player2DropDown.selectedLabel = _song.player2;
 
+		var stageShits:Array<String> = sys.FileSystem.readDirectory("assets/stages");
+
+		var stageDropDown = new FlxUIDropDownMenu(10, 140, FlxUIDropDownMenu.makeStrIdLabelArray(stageShits, true), function(character:String)
+		{
+			_song.stage = stageShits[Std.parseInt(character)];
+		});
+		stageDropDown.selectedLabel = _song.stage;
+
 		var assetModifiers:Array<String> = CoolUtil.returnAssetsLibrary('UI/default');
 
 		var assetModifierDropDown = new FlxUIDropDownMenu(player2DropDown.x, player2DropDown.y + 40, FlxUIDropDownMenu.makeStrIdLabelArray(assetModifiers, true), function(character:String)
@@ -300,6 +308,7 @@ class OriginalChartingState extends MusicBeatState
 		tab_group_song.add(player2DropDown);
 		tab_group_song.add(playTicksBf);
 		tab_group_song.add(playTicksDad);
+		tab_group_song.add(stageDropDown);
 		tab_group_song.add(assetModifierDropDown);
 
 		UI_box.addGroup(tab_group_song);

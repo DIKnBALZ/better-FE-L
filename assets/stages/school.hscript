@@ -3,6 +3,7 @@ import gameObjects.background.BackgroundGirls;
 var bgGirls:BackgroundGirls;
 
 function create() {
+        assetModifier = 'pixel';
         curStage = 'school';
 
         // defaultCamZoom = 0.9;

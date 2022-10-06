@@ -210,20 +210,42 @@ class PlayState extends MusicBeatState
 		// set up a class for the stage type in here afterwards
 		curStage = "";
 		// call the song's stage if it exists
-		if (SONG.stage != null)
-			curStage = SONG.stage;
+		if (SONG.stage != null) {
+			curStage = StringTools.replace(SONG.stage, ".hscript", "");
+		}
+		else {
+			switch (CoolUtil.spaceToDash(SONG.song.toLowerCase()))
+			{
+				case 'tutorial' | 'bopeebo' | 'fresh' | 'dadbattle':
+					curStage = 'stage';
+				case 'spookeez' | 'south' | 'monster':
+					curStage = 'spooky';
+				case 'pico' | 'blammed' | 'philly-nice':
+					curStage = 'philly';
+				case 'milf' | 'satin-panties' | 'high':
+					curStage = 'highway';
+				case 'cocoa' | 'eggnog':
+					curStage = 'mall';
+				case 'winter-horrorland':
+					curStage = 'mallEvil';
+				case 'senpai' | 'roses':
+					curStage = 'school';
+				case 'thorns':
+					curStage = 'schoolEvil';
+				case 'ugh' | 'guns' | 'stress':
+					curStage = 'tank';
+				default:
+					curStage = 'template';
+					trace("you didnt set the stage for your song lol!");
+			}
+		}
 
 		// cache shit
 		displayRating('sick', 'early', true);
 		popUpCombo(true);
 		//
 
-		var tempScript:HScript = new HScript('other/song_stages');
-		tempScript.setVariable("CoolUtil", CoolUtil);
-		tempScript.setVariable("PlayState", PlayState);
-		tempScript.create([CoolUtil.spaceToDash(SONG.song.toLowerCase())]);
-
-		stageBuild = new Stage(tempScript.getVariable("curStage") != null ? tempScript.getVariable("curStage") : curStage);
+		stageBuild = new Stage(curStage);
 		add(stageBuild);
 
 		if (FileSystem.exists('assets/global_scripts')) {
@@ -1747,28 +1769,19 @@ class PlayState extends MusicBeatState
 
 	private function songEndSpecificActions()
 	{
-		switch (SONG.song.toLowerCase())
-		{
-			case 'eggnog':
-				// make the lights go out
-				var blackShit:FlxSprite = new FlxSprite(-FlxG.width * FlxG.camera.zoom,
-					-FlxG.height * FlxG.camera.zoom).makeGraphic(FlxG.width * 3, FlxG.height * 3, FlxColor.BLACK);
-				blackShit.scrollFactor.set();
-				add(blackShit);
-				camHUD.visible = false;
-
-				// oooo spooky
-				FlxG.sound.play(Paths.sound('Lights_Shut_off'));
-
-				// call the song end
-				var eggnogEndTimer:FlxTimer = new FlxTimer().start(Conductor.crochet / 1000, function(timer:FlxTimer)
-				{
-					callDefaultSongEnd();
-				}, 1);
-
-			default:
-				callDefaultSongEnd();
-		}
+		var script:HScript = new HScript("other/coolstuff");
+		script.setVariable("this", script);
+		script.setVariable("Stage", Stage);
+		script.setVariable("PlayState", this);
+		script.setVariable("Paths", Paths);
+		script.setVariable("Std", Std);
+		script.setVariable("curStage", curStage);
+		script.setVariable("CoolUtil", CoolUtil);
+		script.setVariable("PlayState", PlayState);
+		script.setVariable("add", function(obj:FlxBasic) {add(obj);});
+		script.create();
+		script.callFunction("songEndSpecificActions");
+		scripts.push(script);
 	}
 
 	private function callDefaultSongEnd()

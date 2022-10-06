@@ -258,6 +258,7 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				script.setVariable("curStage", this.curStage);
 				script.setVariable("gfVersion", gfVersion);
 				script.setVariable("foreground", foreground);
+				script.setVariable("assetModifier", PlayState.assetModifier);
 				script.setVariable("add", function(obj:FlxBasic) {add(obj);});
 				script.create();
 		}
