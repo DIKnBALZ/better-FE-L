@@ -95,6 +95,8 @@ class OriginalChartingState extends MusicBeatState
 	var playTicksBf:FlxUICheckBox = null;
 	var playTicksDad:FlxUICheckBox = null;
 
+	var leftStrums:Array<FlxSprite> = [];
+
 	override function create()
 	{
 		super.create();
@@ -159,6 +161,22 @@ class OriginalChartingState extends MusicBeatState
 		bpmTxt = new FlxText(1000, 50, 0, "", 16);
 		bpmTxt.scrollFactor.set();
 		add(bpmTxt);
+ 
+		// note: this could definitely be done Way better
+		for (i in 0 ... 4) {
+			var yeah:Array<String> = ["LEFT", "DOWN", "UP", "RIGHT"];
+			var theShit:FlxSprite = new FlxSprite(gridBG.x + (GRID_SIZE * i), gridBG.y);
+			theShit.frames = Paths.getSparrowAtlas('noteskins/notes/default/base/NOTE_assets');
+			theShit.animation.addByPrefix("static", 'arrow${yeah[i]}', 24, true);
+			theShit.animation.addByPrefix("confirm", '${yeah[i].toLowerCase()} confirm', 24, false);
+			theShit.setPosition(gridBG.x + (GRID_SIZE * i), gridBG.y - (theShit.height / 2));
+			theShit.scale.set(0.275, 0.275);
+			theShit.updateHitbox();
+			theShit.animation.play("static");
+			add(theShit);
+			leftStrums.push(theShit);
+			theShit.centerOffsets();
+		}
 
 		strumLine = new FlxSprite(0, 50).makeGraphic(Std.int(FlxG.width / 2), 4);
 		add(strumLine);
@@ -554,7 +572,15 @@ class OriginalChartingState extends MusicBeatState
 		Conductor.songPosition = songMusic.time;
 		_song.song = typingShit.text;
 
+		for (theShit in leftStrums) {
+			if (theShit.animation.curAnim.name == "confirm" && theShit.animation.curAnim.finished) {
+				theShit.animation.play("static");
+				theShit.centerOffsets();
+			}
+		}
+
 		// real thanks for the help with this ShadowMario, you are the best -Ghost
+		// edit: uhhhh
 		var playedSound:Array<Bool> = [];
 		for (i in 0...8) {
 			playedSound.push(false);
@@ -566,17 +592,27 @@ class OriginalChartingState extends MusicBeatState
 				var data:Int = note.noteData % 4;
 
 				if (songMusic.playing && !playedSound[data] && note.noteData > -1 && note.strumTime >= lastSongPos)
-                {
+				{
 					if ((playTicksBf.checked) && (note.mustPress) || (playTicksDad.checked) && (!note.mustPress))
 					{
 						FlxG.sound.play(Paths.sound('soundNoteTick'));
 						playedSound[data] = true;
 					}
-                }
+				}
+				if (songMusic.playing && note.noteData > -1 && note.strumTime >= lastSongPos)
+				{
+					leftStrums[data].animation.play("confirm", true);
+					leftStrums[data].offset.x = leftStrums[data].offset.x + 10;
+					leftStrums[data].offset.y = leftStrums[data].offset.x + 5;
+				}
             }
         });
+	// yoshubs im going to brutally stab and murder you
 
 		strumLine.y = getYfromStrum((Conductor.songPosition - sectionStartTime()) % (Conductor.stepCrochet * _song.notes[curSection].lengthInSteps));
+		for (theShit in leftStrums) {
+			theShit.y = strumLine.y - (theShit.height / 2);
+		}
 
 		if (curBeat % 4 == 0 && curStep >= 16 * (curSection + 1))
 		{

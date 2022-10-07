@@ -302,4 +302,10 @@ class Paths
 		var graphic:FlxGraphic = coolerReturnGraphic('characters/$key/spritesheet', library);
 		return (FlxAtlasFrames.fromSparrow(graphic, File.getContent(file('characters/$key/spritesheet.xml', library))));
 	}
+
+	inline static public function coolerGetSparrowAtlas(key:String, ?library:String)
+	{
+		var graphic:FlxGraphic = coolerReturnGraphic(key, library);
+		return (FlxAtlasFrames.fromSparrow(graphic, File.getContent(file('$key.xml', library))));
+	}
 }

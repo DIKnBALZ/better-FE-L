@@ -642,10 +642,7 @@ class PlayState extends MusicBeatState
 				if ((FlxG.keys.justPressed.SEVEN) && (!startingSong))
 				{
 					resetMusic();
-					if (FlxG.keys.pressed.SHIFT)
-						Main.switchState(this, new ChartingState());
-					else
-						Main.switchState(this, new OriginalChartingState());
+					Main.switchState(this, new OriginalChartingState());
 				}
 
 				if ((FlxG.keys.justPressed.SIX))
