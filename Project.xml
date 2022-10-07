@@ -60,7 +60,6 @@
 	<haxelib name="discord_rpc" if="DISCORD_RPC"/>
 	<haxelib name="polymod"/>
 	<haxelib name="hscript-improved"/> <!--haxelib git hscript-improved https://github.com/YoshiCrafter29/hscript-improved-->
-	<haxelib name="flxanimate" /> <!--haxelib install flxanimate-->
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
