@@ -7,6 +7,6 @@ function create() {
     character.addOffset('danceLeft', 0, -9);
     character.addOffset('danceRight', 0, -9);
 
-    character.characterData.danceType = "gf";
+    characterData.danceType = "gf";
     character.playAnim('danceRight');
 }

@@ -3,7 +3,6 @@ function create() {
     character.animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
     character.animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
 
-    character.playAnim('firstDeath');
-
     character.flipX = true;
+    character.playAnim('firstDeath');
 }

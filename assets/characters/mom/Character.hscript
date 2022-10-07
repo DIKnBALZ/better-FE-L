@@ -10,7 +10,6 @@ function create() {
 	character.addOffset('singLEFT', 250, -23);
 	character.addOffset('singDOWN', 20, -160);
 
-	character.playAnim('idle');
-
 	characterData.camOffsetY = 100;
+	character.playAnim('idle');
 }

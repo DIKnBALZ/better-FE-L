@@ -17,21 +17,6 @@ class HealthIcon extends FlxSprite {
 	}
 
 	public function updateIcon(char:String = 'bf', isPlayer:Bool = false) {
-		// var trimmedCharacter:String = char;
-		// if (trimmedCharacter.contains('-'))
-		// 	trimmedCharacter = trimmedCharacter.substring(0, trimmedCharacter.indexOf('-'));
-
-		// var iconPath = char;
-		// if (!FileSystem.exists(Paths.getPath('characters/$char/icons.png', IMAGE)))
-		// {
-		// 	if (iconPath != trimmedCharacter)
-		// 		iconPath = trimmedCharacter;
-		// 	else
-		// 		iconPath = 'bf';
-		// 	trace('$char icon trying $iconPath instead you fuck');
-		// }
-
-		// var iconGraphic:FlxGraphic = Paths.image('icons/icon-' + iconPath);
 		var iconGraphic:FlxGraphic = Paths.coolerReturnGraphic('characters/$char/icons');
 		if (iconGraphic == null)
 			iconGraphic = Paths.coolerReturnGraphic('characters/bf/icons');
