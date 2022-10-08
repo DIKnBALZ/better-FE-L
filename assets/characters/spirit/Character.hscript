@@ -1,0 +1,24 @@
+function create() {
+    character.frames = Paths.coolerReturnGraphic('characters/spirit/spritesheet');
+    
+    character.animation.addByPrefix('idle', "idle spirit_", 24, false);
+    character.animation.addByPrefix('singUP', "up_", 24, false);
+    character.animation.addByPrefix('singRIGHT', "right_", 24, false);
+    character.animation.addByPrefix('singLEFT', "left_", 24, false);
+    character.animation.addByPrefix('singDOWN', "spirit down_", 24, false);
+
+    character.addOffset('idle', -220, -280);
+    character.addOffset('singUP', -220, -240);
+    character.addOffset('singRIGHT', -220, -280);
+    character.addOffset('singLEFT', -200, -280);
+    character.addOffset('singDOWN', 170, 110);
+    
+    character.antialiasing = false;
+    character.setGraphicSize(Std.int(width * 6));
+    character.updateHitbox();
+    characterData.quickDancer = true;
+    characterData.camOffsetY = 50;
+    characterData.camOffsetX = 100;
+
+    character.playAnim('idle');
+}

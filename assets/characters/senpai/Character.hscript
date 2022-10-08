@@ -1,0 +1,18 @@
+function create() {
+    character.animation.addByPrefix('idle', 'Senpai Idle', 24, false);
+    character.animation.addByPrefix('singUP', 'SENPAI UP NOTE', 24, false);
+    character.animation.addByPrefix('singLEFT', 'SENPAI LEFT NOTE', 24, false);
+    character.animation.addByPrefix('singRIGHT', 'SENPAI RIGHT NOTE', 24, false);
+    character.animation.addByPrefix('singDOWN', 'SENPAI DOWN NOTE', 24, false);
+
+    character.addOffset('singUP', 5, 37);
+    character.addOffset('singLEFT', 40, 0);
+    character.addOffset('singDODWN', 14, 0);
+
+    character.antialiasing = false;
+    character.setGraphicSize(Std.int(width * 6));
+    character.updateHitbox();
+    characterData.camOffsetY = -330;
+    characterData.camOffsetX = -200;
+    character.playAnim('idle');
+}
