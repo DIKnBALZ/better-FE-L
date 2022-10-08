@@ -49,3 +49,6 @@ class TestState extends MusicBeatState // EXAMPLE GRAHHHH
         scrollY: 0
     }).loadGraphic(Paths.image('backgrounds/' + curStage + '/stageback'));
 */
+
+
+// man i wish this shit worked :(

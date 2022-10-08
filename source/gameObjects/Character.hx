@@ -147,9 +147,7 @@ class Character extends FNFSprite {
 	
 	public var danced:Bool = false;
 	override public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void {
-		if (animation.getByName(AnimName) != null)
-			super.playAnim(AnimName, Force, Reversed, Frame);
-		
+		if (animation.getByName(AnimName) != null) super.playAnim(AnimName, Force, Reversed, Frame);
 		if (curCharacter == 'gf') {
 			if (AnimName == 'singLEFT') danced = true;
 			else if (AnimName == 'singRIGHT') danced = false;

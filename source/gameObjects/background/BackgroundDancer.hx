@@ -16,9 +16,7 @@ class BackgroundDancer extends FNFSprite {
 	var danceDir:Bool = false;
 	public function dance():Void {
 		danceDir = !danceDir;
-		if (danceDir)
-			animation.play('danceRight', true);
-		else
-			animation.play('danceLeft', true);
+		if (danceDir) animation.play('danceRight', true);
+		else animation.play('danceLeft', true);
 	}
 }

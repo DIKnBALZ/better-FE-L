@@ -55,38 +55,32 @@ class Main extends Sprite
 		[ [songs to use], [characters in songs], [color of week], name of week ]
 	**/
 	public static var gameWeeks:Array<Dynamic> = [
-		[['Tutorial'], ['gf'], [FlxColor.fromRGB(129, 100, 223)], 'Funky Beginnings'],
-		[
+		[['Tutorial'], ['gf'], [FlxColor.fromRGB(129, 100, 223)], 'Funky Beginnings'], [
 			['Bopeebo', 'Fresh', 'Dadbattle'],
 			['dad', 'dad', 'dad'],
 			[FlxColor.fromRGB(129, 100, 223)],
 			'vs. DADDY DEAREST'
-		],
-		[
+		], [
 			['Spookeez', 'South', 'Monster'],
 			['spooky', 'spooky', 'monster'],
 			[FlxColor.fromRGB(30, 45, 60)],
 			'Spooky Month'
-		],
-		[
+		], [
 			['Pico', 'Philly-Nice', 'Blammed'],
 			['pico'],
 			[FlxColor.fromRGB(111, 19, 60)],
 			'vs. Pico'
-		],
-		[
+		], [
 			['Satin-Panties', 'High', 'Milf'],
 			['mom'],
 			[FlxColor.fromRGB(203, 113, 170)],
 			'MOMMY MUST MURDER'
-		],
-		[
+		], [
 			['Cocoa', 'Eggnog', 'Winter-Horrorland'],
 			['parents-christmas', 'parents-christmas', 'monster-christmas'],
 			[FlxColor.fromRGB(141, 165, 206)],
 			'RED SNOW'
-		],
-		[
+		], [
 			['Senpai', 'Roses', 'Thorns'],
 			['senpai', 'senpai', 'spirit'],
 			[FlxColor.fromRGB(206, 106, 169)],
@@ -94,118 +88,77 @@ class Main extends Sprite
 		],
 	];
 
-	// most of these variables are just from the base game!
-	// be sure to mess around with these if you'd like.
-
-	public static function main():Void
-	{
+	public static function main():Void {
 		Lib.current.addChild(new Main());
 	}
 
-	// calls a function to set the game up
-	public function new()
-	{
+	public function new() {
 		super();
-
-		/**
-			ok so, haxe html5 CANNOT do 120 fps. it just cannot.
-			so here i just set the framerate to 60 if its complied in html5.
-			reason why we dont just keep it because the game will act as if its 120 fps, and cause
-			note studders and shit its weird.
-		**/
-
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
 
 		#if (html5 || neko)
-		framerate = 60;
+			framerate = 60;
 		#end
-
-		// simply said, a state is like the 'surface' area of the window where everything is drawn.
-		// if you've used gamemaker you'll probably understand the term surface better
-		// this defines the surface bounds
 
 		var stageWidth:Int = Lib.current.stage.stageWidth;
 		var stageHeight:Int = Lib.current.stage.stageHeight;
 
-		if (zoom == -1)
-		{
+		if (zoom == -1) {
 			var ratioX:Float = stageWidth / gameWidth;
 			var ratioY:Float = stageHeight / gameHeight;
 			zoom = Math.min(ratioX, ratioY);
 			gameWidth = Math.ceil(stageWidth / zoom);
 			gameHeight = Math.ceil(stageHeight / zoom);
-			// this just kind of sets up the camera zoom in accordance to the surface width and camera zoom.
-			// if set to negative one, it is done so automatically, which is the default.
 		}
 
 		FlxTransitionableState.skipNextTransIn = true;
 
-		// here we set up the base game
 		var gameCreate:FlxGame;
 		gameCreate = new FlxGame(gameWidth, gameHeight, mainClassState, zoom, framerate, framerate, skipSplash);
-		addChild(gameCreate); // and create it afterwards
-
-		// default game FPS settings, I'll probably comment over them later.
-		// addChild(new FPS(10, 3, 0xFFFFFF));
-
-		// begin the discord rich presence
+		addChild(gameCreate);
+		
 		#if DISCORD_RPC
-		Discord.initializeRPC();
-		Discord.changePresence('');
+			Discord.initializeRPC();
+			Discord.changePresence('');
 		#end
 
-		// test initialising the player settings
 		PlayerSettings.init();
 
 		infoCounter = new Overlay(0, 0);
 		addChild(infoCounter);
 	}
 
-	public static function framerateAdjust(input:Float)
-	{
+	public static function framerateAdjust(input:Float) {
 		return input * (60 / FlxG.drawFramerate);
 	}
 
-	/*  This is used to switch "rooms," to put it basically. Imagine you are in the main menu, and press the freeplay button.
-		That would change the game's main class to freeplay, as it is the active class at the moment.
-	 */
+	// This is used to switch "rooms," to put it basically. Imagine you are in the main menu, and press the freeplay button.
+	// That would change the game's main class to freeplay, as it is the active class at the moment.
 	public static var lastState:FlxState;
-
-	public static function switchState(curState:FlxState, target:FlxState)
-	{
-		// Custom made Trans in
+	public static function switchState(curState:FlxState, target:FlxState) { // Custom made Trans in
 		mainClassState = Type.getClass(target);
-		if (!FlxTransitionableState.skipNextTransIn)
-		{
+		if (!FlxTransitionableState.skipNextTransIn) {
 			curState.openSubState(new FNFTransition(0.35, false));
-			FNFTransition.finishCallback = function()
-			{
+			FNFTransition.finishCallback = function() {
 				FlxG.switchState(target);
 			};
 			return trace('changed state');
 		}
 		FlxTransitionableState.skipNextTransIn = false;
-		// load the state
 		FlxG.switchState(target);
 	}
 
-	public static function updateFramerate(newFramerate:Int)
-	{
-		// flixel will literally throw errors at me if I dont separate the orders
-		if (newFramerate > FlxG.updateFramerate)
-		{
+	public static function updateFramerate(newFramerate:Int) { // flixel will literally throw errors at me if I dont separate the orders
+		if (newFramerate > FlxG.updateFramerate) {
 			FlxG.updateFramerate = newFramerate;
 			FlxG.drawFramerate = newFramerate;
-		}
-		else
-		{
+		} else {
 			FlxG.drawFramerate = newFramerate;
 			FlxG.updateFramerate = newFramerate;
 		}
 	}
 
-	function onCrash(e:UncaughtErrorEvent):Void
-	{
+	function onCrash(e:UncaughtErrorEvent):Void {
 		var errMsg:String = "";
 		var path:String;
 		var callStack:Array<StackItem> = CallStack.exceptionStack(true);
@@ -213,47 +166,32 @@ class Main extends Sprite
 
 		dateNow = StringTools.replace(dateNow, " ", "_");
 		dateNow = StringTools.replace(dateNow, ":", "'");
-
 		path = "crash/" + "FE_" + dateNow + ".txt";
-
-		for (stackItem in callStack)
-		{
-			switch (stackItem)
-			{
-				case FilePos(s, file, line, column):
-					errMsg += file + " (line " + line + ")\n";
-				default:
-					Sys.println(stackItem);
+		for (stackItem in callStack) {
+			switch (stackItem) {
+				case FilePos(s, file, line, column): errMsg += file + " (line " + line + ")\n";
+				default: Sys.println(stackItem);
 			}
 		}
 
-		errMsg += "\nUncaught Error: " + e.error + "\nPlease report this error to the GitHub page: https://github.com/Yoshubs/Forever-Engine";
-
-		if (!FileSystem.exists("crash/"))
-			FileSystem.createDirectory("crash/");
-
+		errMsg += "\nUncaught Error: " + e.error + "Don't report this to Yoshubs, it's most likely because Wizard is a dumbass.";
+		if (!FileSystem.exists("crash/")) FileSystem.createDirectory("crash/");
 		File.saveContent(path, errMsg + "\n");
-
 		Sys.println(errMsg);
 		Sys.println("Crash dump saved in " + Path.normalize(path));
 
 		var crashDialoguePath:String = "FE-CrashDialog";
-
 		#if windows
-		crashDialoguePath += ".exe";
+			crashDialoguePath += ".exe";
 		#end
 
-		if (FileSystem.exists(crashDialoguePath))
-		{
+		if (FileSystem.exists(crashDialoguePath)) {
 			Sys.println("Found crash dialog: " + crashDialoguePath);
 			new Process(crashDialoguePath, [path]);
-		}
-		else
-		{
+		} else {
 			Sys.println("No crash dialog found! Making a simple alert instead...");
-			Application.current.window.alert(errMsg, "Error!");
+			Application.current.window.alert(errMsg, "Oh FUCK!");
 		}
-
 		Sys.exit(1);
 	}
 }
