@@ -40,12 +40,3 @@ function beatHit() {
         else
                 gfDance.animation.play('danceLeft');
 }
-
-function update(elapsed:Float) {
-        if (FlxG.keys.justPressed.ENTER && !transitioning && skippedIntro) {
-                titleText.animation.play('press');
-
-                FlxG.camera.flash(FlxColor.WHITE, 1);
-                FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-        }
-}

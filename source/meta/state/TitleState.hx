@@ -148,6 +148,14 @@ class TitleState extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		script.update(elapsed);
+		if (script.getVariable("titleText") != null) {
+			if (FlxG.keys.justPressed.ENTER && !transitioning && skippedIntro) {
+				script.getVariable("titleText").animation.play('press');
+
+				FlxG.camera.flash(FlxColor.WHITE, 1);
+				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+			}
+		}
 
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
