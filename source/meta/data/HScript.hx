@@ -41,7 +41,6 @@ class HScript
 			setVariable("Main", Main);
 			setVariable("FlxAxes", flixel.util.FlxAxes);
 			setVariable("FlxSprite", flixel.FlxSprite);
-			// setVariable("FlxAnimate", flxanimate.FlxAnimate);
 			setVariable("FlxG", flixel.FlxG);
 			setVariable("Paths", Paths);
 			setVariable("Std", Std);
