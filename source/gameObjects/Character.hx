@@ -51,29 +51,6 @@ class Character extends FNFSprite {
 		};
 
 		switch (curCharacter) {
-			/*
-			case 'bf-holding-gf':
-				frames = Paths.getSparrowAtlas('characters/bfAndGF');
-				animation.addByPrefix('idle', 'BF idle dance w gf', 24, false);
-				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
-				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
-				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
-				
-				flipX = true;
-				playAnim('idle');
-			case 'bf-holding-gf-dead':
-				frames = Paths.getSparrowAtlas('characters/bfHoldingGF-DEAD');
-				animation.addByPrefix('firstDeath', "BF Dies with GF", 24, false);
-				animation.addByPrefix('deathLoop', "BF Dead with GF Loop", 24, true);
-				animation.addByPrefix('deathConfirm', "RETRY confirm holding gf", 24, false);
-
-				playAnim('firstDeath');
-				*/
 			case 'unknown':
 				// can we hardcode this thanks
 			default:

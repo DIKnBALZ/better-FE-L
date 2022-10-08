@@ -45,8 +45,7 @@ class Timings
 	public static var gottenJudgements:Map<String, Int> = [];
 	public static var smallestRating:String;
 
-	public static function callAccuracy()
-	{
+	public static function callAccuracy() {
 		// reset the accuracy to 0%
 		accuracy = 0.001;
 		trueAccuracy = 0;
@@ -60,63 +59,44 @@ class Timings
 		msThreshold = biggestThreshold;
 
 		// set the gotten judgement amounts
-		for (judgement in judgementsMap.keys())
-			gottenJudgements.set(judgement, 0);
+		for (judgement in judgementsMap.keys()) gottenJudgements.set(judgement, 0);
 		smallestRating = 'sick';
 
 		notesHit = 0;
 		segmentsHit = 0;
-
 		ratingFinal = "N/A";
-
 		comboDisplay = '';
 	}
 
-	public static function updateAccuracy(judgement:Int, ?isSustain:Bool = false, ?segmentCount:Int = 1)
-	{
-		if (!isSustain)
-		{
+	public static function updateAccuracy(judgement:Int, ?isSustain:Bool = false, ?segmentCount:Int = 1) {
+		if (!isSustain) {
 			notesHit++;
 			accuracy += (Math.max(0, judgement));
 		}
-		else
-		{
-			accuracy += (Math.max(0, judgement) / segmentCount);
-		}
+		else accuracy += (Math.max(0, judgement) / segmentCount);
 		trueAccuracy = (accuracy / notesHit);
 
 		updateFCDisplay();
 		updateScoreRating();
 	}
 
-	public static function updateFCDisplay()
-	{
+	public static function updateFCDisplay() {
 		// update combo display
 		comboDisplay = '';
-		if (judgementsMap.get(smallestRating)[4] != null)
-			comboDisplay = judgementsMap.get(smallestRating)[4];
-		else
-		{
-			if (PlayState.misses < 10)
-				comboDisplay = ' [SDCB]';
-		}
+		if (judgementsMap.get(smallestRating)[4] != null) comboDisplay = judgementsMap.get(smallestRating)[4];
+		else if (PlayState.misses < 10) comboDisplay = ' [SDCB]';
 
 		// this updates the most so uh
 		PlayState.uiHUD.updateScoreText();
 	}
 
 	public static function getAccuracy()
-	{
 		return trueAccuracy;
-	}
 
-	public static function updateScoreRating()
-	{
+	public static function updateScoreRating() {
 		var biggest:Int = 0;
-		for (score in scoreRating.keys())
-		{
-			if ((scoreRating.get(score) <= trueAccuracy) && (scoreRating.get(score) >= biggest))
-			{
+		for (score in scoreRating.keys()) {
+			if ((scoreRating.get(score) <= trueAccuracy) && (scoreRating.get(score) >= biggest)) {
 				biggest = scoreRating.get(score);
 				ratingFinal = score;
 			}
@@ -124,7 +104,5 @@ class Timings
 	}
 
 	public static function returnScoreRating()
-	{
 		return ratingFinal;
-	}
 }

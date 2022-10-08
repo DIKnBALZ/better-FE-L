@@ -10,7 +10,7 @@ function create() {
     character.addOffset('singDODWN', 14, 0);
 
     character.antialiasing = false;
-    character.setGraphicSize(Std.int(width * 6));
+    character.setGraphicSize(Std.int(character.width * 6));
     character.updateHitbox();
     characterData.camOffsetY = -330;
     characterData.camOffsetX = -200;
