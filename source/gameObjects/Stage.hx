@@ -17,7 +17,7 @@ import flixel.tweens.FlxTween;
 import gameObjects.background.*;
 import meta.CoolUtil;
 import meta.data.Conductor;
-import meta.data.HScript;
+import meta.data.Script.HScript;
 import meta.data.dependency.FNFSprite;
 import meta.state.PlayState;
 
@@ -266,13 +266,17 @@ class Stage extends FlxTypedGroup<FlxBasic>
 
 	public function returnGFtype(curStage)
 	{
-		script.callFunction("returnGFtype");
 		switch (curStage)
 		{
 			case 'highway':
 				gfVersion = 'gf-car';
 			default:
-				gfVersion = script.getVariable("gfVersion");
+				try {
+					gfVersion = script.getVariable("gfVersion");
+				}
+				catch(e) {
+					gfVersion = "gf";
+				}
 			// case 'tank':
 			// 	gfVersion = 'gf-tankmen';
 		}
@@ -309,7 +313,11 @@ class Stage extends FlxTypedGroup<FlxBasic>
 
 	public function repositionPlayers(curStage, boyfriend:Character, dad:Character, gf:Character):Void
 	{
-		script.callFunction("repositionPlayers", [boyfriend, dad, gf]);
+		try {
+			script.callFunction("repositionPlayers", [boyfriend, dad, gf]);
+		}
+		catch(e) {
+		}
 
 		// REPOSITIONING PER STAGE
 		switch (curStage)
@@ -344,7 +352,11 @@ class Stage extends FlxTypedGroup<FlxBasic>
 
 	public function stageUpdate(curBeat:Int, boyfriend:Boyfriend, gf:Character, dadOpponent:Character)
 	{
-		script.callFunction("stageUpdate", [curBeat, boyfriend, gf, dadOpponent]);
+		try {
+			script.callFunction("stageUpdate", [curBeat, boyfriend, gf, dadOpponent]);
+		}
+		catch(e) {
+		}
 
 		// trace('update backgrounds');
 		switch (PlayState.curStage)
@@ -397,7 +409,11 @@ class Stage extends FlxTypedGroup<FlxBasic>
 
 	public function stageUpdateConstant(elapsed:Float, boyfriend:Boyfriend, gf:Character, dadOpponent:Character)
 	{
-		script.callFunction("stageUpdateConstant", [elapsed, boyfriend, gf, dadOpponent]);
+		try {
+			script.callFunction("stageUpdateConstant", [elapsed, boyfriend, gf, dadOpponent]);
+		}
+		catch(e) {
+		}
 
 		switch (PlayState.curStage)
 		{

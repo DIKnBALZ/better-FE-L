@@ -23,6 +23,7 @@ import flixel.util.FlxTimer;
 import lime.app.Application;
 import meta.MusicBeat.MusicBeatState;
 import meta.data.*;
+import meta.data.Script.HScript;
 import meta.data.dependency.Discord;
 import meta.data.font.Alphabet;
 import meta.state.menus.*;

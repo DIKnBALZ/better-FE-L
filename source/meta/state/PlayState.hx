@@ -29,6 +29,7 @@ import gameObjects.userInterface.notes.Strumline.UIStaticArrow;
 import meta.*;
 import meta.MusicBeat.MusicBeatState;
 import meta.data.*;
+import meta.data.Script.HScript;
 import meta.data.Song.SwagSong;
 import meta.state.charting.*;
 import meta.state.menus.*;

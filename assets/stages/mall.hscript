@@ -2,6 +2,7 @@ var santa:FNFSprite;
 var upperBoppers:FNFSprite;
 
 function create() {
+        gfVersion = 'gf-christmas';
         curStage = 'mall';
         PlayState.defaultCamZoom = 0.80;
 
@@ -66,8 +67,4 @@ function stageUpdate(curBeat:Int, boyfriend:Boyfriend, gf:Character, dadOpponent
         upperBoppers.animation.play('bop', true);
         bottomBoppers.animation.play('bop', true);
         santa.animation.play('idle', true);
-}
-
-function returnGFtype() {
-        gfVersion = 'gf-christmas';
 }

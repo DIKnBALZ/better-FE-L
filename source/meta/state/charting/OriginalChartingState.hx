@@ -95,6 +95,7 @@ class OriginalChartingState extends MusicBeatState
 	var playTicksBf:FlxUICheckBox = null;
 	var playTicksDad:FlxUICheckBox = null;
 
+	var strumOffsets:Array<Float> = [];
 	var leftStrums:Array<FlxSprite> = [];
 
 	override function create()
@@ -199,6 +200,7 @@ class OriginalChartingState extends MusicBeatState
 			add(theShit);
 			leftStrums.push(theShit);
 			theShit.centerOffsets();
+			strumOffsets = [theShit.offset.x, theShit.offset.y];
 		}
 
 		add(curRenderedNotes);
@@ -591,7 +593,7 @@ class OriginalChartingState extends MusicBeatState
 		{
 					var data:Int = note.noteData % 4;
 
-					if (songMusic.playing && !playedSound[data] && note.noteData > -1 && note.strumTime >= lastSongPos)
+					if (songMusic.playing && !playedSound[data] && data > -1 && note.strumTime >= lastSongPos)
 					{
 						if ((playTicksBf.checked) && (note.mustPress))
 						{
@@ -604,11 +606,11 @@ class OriginalChartingState extends MusicBeatState
 							playedSound[data] = true;
 						}
 					}
-					if (songMusic.playing && note.noteData > -1 && note.strumTime >= lastSongPos)
+					if (songMusic.playing && data > -1 && note.strumTime >= lastSongPos)
 					{
-						leftStrums[note.noteData].animation.play("confirm", true);
-						leftStrums[note.noteData].offset.x = leftStrums[data].offset.x + 10;
-						leftStrums[note.noteData].offset.y = leftStrums[data].offset.y + 10;
+						leftStrums[data].animation.play("confirm", true);
+						leftStrums[data].offset.x = strumOffsets[0] + 10;
+						leftStrums[data].offset.y = strumOffsets[1] + 10;
 					}
 		}
 		});

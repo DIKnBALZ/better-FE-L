@@ -1,4 +1,5 @@
 function create() {
+        gfVersion = 'gf-christmas';
         curStage = 'mallEvil';
         
         var bg:FNFSprite = new FNFSprite(-400, -500).loadGraphic(Paths.image('backgrounds/mall/evilBG'));
@@ -21,8 +22,4 @@ function create() {
 
 function repositionPlayers(boyfriend:Character, dad:Character, gf:Character) {
         boyfriend.x += 320;
-}
-
-function returnGFtype() {
-        gfVersion = 'gf-christmas';
 }

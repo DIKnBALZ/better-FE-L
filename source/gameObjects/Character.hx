@@ -7,6 +7,7 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import gameObjects.userInterface.HealthIcon;
 import meta.*;
 import meta.data.*;
+import meta.data.Script.HScript;
 import meta.data.dependency.FNFSprite;
 import meta.state.PlayState;
 import openfl.utils.Assets as OpenFlAssets;
