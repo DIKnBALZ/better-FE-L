@@ -7,6 +7,7 @@ import flixel.addons.ui.FlxInputText;
 import flixel.addons.ui.FlxUI9SliceSprite;
 import flixel.addons.ui.FlxUI;
 import flixel.addons.ui.FlxUICheckBox;
+import flixel.addons.ui.FlxUIDropDownMenu.FlxUIDropDownMenuDropDirection;
 import flixel.addons.ui.FlxUIDropDownMenu;
 import flixel.addons.ui.FlxUIInputText;
 import flixel.addons.ui.FlxUINumericStepper;
@@ -280,6 +281,7 @@ class OriginalChartingState extends MusicBeatState
 			_song.player1 = characters[Std.parseInt(character)];
 			updateHeads();
 		});
+		player1DropDown.dropDirection = FlxUIDropDownMenuDropDirection.Down;
 		player1DropDown.selectedLabel = _song.player1;
 
 		var player2DropDown = new FlxUIDropDownMenu(140, 100, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
@@ -287,6 +289,7 @@ class OriginalChartingState extends MusicBeatState
 			_song.player2 = characters[Std.parseInt(character)];
 			updateHeads();
 		});
+		player2DropDown.dropDirection = FlxUIDropDownMenuDropDirection.Down;
 		player2DropDown.selectedLabel = _song.player2;
 
 		var stageShits:Array<String> = sys.FileSystem.readDirectory("assets/stages");
