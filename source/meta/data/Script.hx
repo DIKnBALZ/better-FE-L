@@ -57,22 +57,23 @@ class HScript
 
 			interp.errorHandler = function(e)
 			{
+				// note to self (inky): make a logs system
 				trace('$e');
-				if (!flixel.FlxG.keys.pressed.SHIFT)
-				{
-					var posInfo = interp.posInfos();
+				// if (!flixel.FlxG.keys.pressed.SHIFT)
+				// {
+				// 	var posInfo = interp.posInfos();
 
-					var lineNumber = Std.string(posInfo.lineNumber);
-					var methodName = posInfo.methodName;
-					var className = posInfo.className;
+				// 	var lineNumber = Std.string(posInfo.lineNumber);
+				// 	var methodName = posInfo.methodName;
+				// 	var className = posInfo.className;
 
-					#if windows
-					Application.current.window.alert('Exception occured at line $lineNumber ${methodName == null ? "" : 'in $methodName'}\n\n${e}\n\nIf the message boxes blocks the engine, hold down SHIFT to bypass.',
-						'HScript error! - $path.hscript');
-					#else
-					//Main.print("error", 'Exception occured at line $lineNumber ${methodName == null ? "" : 'in $methodName'}\n\n${e}\n\nHX File: $path.hxs');
-					#end
-				}
+				// 	#if windows
+				// 	Application.current.window.alert('Exception occured at line $lineNumber ${methodName == null ? "" : 'in $methodName'}\n\n${e}\n\nIf the message boxes blocks the engine, hold down SHIFT to bypass.',
+				// 		'HScript error! - $path.hscript');
+				// 	#else
+				// 	//Main.print("error", 'Exception occured at line $lineNumber ${methodName == null ? "" : 'in $methodName'}\n\n${e}\n\nHX File: $path.hxs');
+				// 	#end
+				// }
 			};
 			interp.execute(program);
 		}

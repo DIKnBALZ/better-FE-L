@@ -853,9 +853,8 @@ class OriginalChartingState extends MusicBeatState
 			stepperSusLength.value = curSelectedNote[2];
 
 	function updateGrid():Void {
-		for (i in [curRenderedNotes, curRenderedSustains])
-			while (i.members.length > 0)
-				i.remove(i.members[0], true);
+		while (curRenderedNotes.members.length > 0) curRenderedNotes.remove(curRenderedNotes.members[0], true);
+		while (curRenderedSustains.members.length > 0) curRenderedSustains.remove(curRenderedSustains.members[0], true);
 
 		var sectionInfo:Array<Dynamic> = _song.notes[curSection].sectionNotes;
 		if (_song.notes[curSection].changeBPM && _song.notes[curSection].bpm > 0) {

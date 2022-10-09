@@ -296,6 +296,11 @@ class Paths {
 		return (FlxAtlasFrames.fromSpriteSheetPacker(image(key, library), file('images/$key.txt', library)));
 	}
 
+	inline static public function coolerGetPackerAtlas(key:String, ?library:String)
+	{
+		return (FlxAtlasFrames.fromSpriteSheetPacker(image(key, library), file('$key.txt', library)));
+	}
+
 	inline static public function getCharacterSparrow(key:String, ?library:String)
 	{
 		var graphic:FlxGraphic = coolerReturnGraphic('characters/$key/spritesheet', library);

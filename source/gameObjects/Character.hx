@@ -56,7 +56,12 @@ class Character extends FNFSprite {
 				// can we hardcode this thanks
 			default:
 				script = new HScript('characters/$curCharacter/Character');
-				frames = Paths.getCharacterSparrow(curCharacter);
+				if (sys.FileSystem.exists(Paths.file('characters/$curCharacter/spritesheet.xml')))
+					frames = Paths.getCharacterSparrow(curCharacter);
+				else if (sys.FileSystem.exists(Paths.file('characters/$curCharacter/spritesheet.txt')))
+					frames = Paths.coolerGetPackerAtlas('characters/$curCharacter/spritesheet');
+				else
+					loadGraphic(Paths.coolerReturnGraphic('characters/$curCharacter/spritesheet'));
 				script.setVariable("character", this);
 				script.setVariable("characterData", characterData);
 				script.setVariable("Paths", Paths);

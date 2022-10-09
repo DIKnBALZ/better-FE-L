@@ -33,7 +33,6 @@ class Stage extends FlxTypedGroup<FlxBasic>
 	var script:HScript;
 	var gfVersion:String = 'gf';
 
-	var halloweenBG:FNFSprite;
 	var phillyCityLights:FlxTypedGroup<FNFSprite>;
 	var phillyTrain:FNFSprite;
 	var trainSound:FlxSound;
@@ -67,61 +66,6 @@ class Stage extends FlxTypedGroup<FlxBasic>
 		//
 		switch (this.curStage)
 		{
-			case 'spooky':
-				this.curStage = 'spooky';
-				// halloweenLevel = true;
-
-				var hallowTex = Paths.getSparrowAtlas('backgrounds/' + this.curStage + '/halloween_bg');
-
-				halloweenBG = new FNFSprite(-200, -100);
-				halloweenBG.frames = hallowTex;
-				halloweenBG.animation.addByPrefix('idle', 'halloweem bg0');
-				halloweenBG.animation.addByPrefix('lightning', 'halloweem bg lightning strike', 24, false);
-				halloweenBG.animation.play('idle');
-				halloweenBG.antialiasing = true;
-				add(halloweenBG);
-
-			// isHalloween = true;
-			case 'philly':
-				this.curStage = 'philly';
-
-				var bg:FNFSprite = new FNFSprite(-100).loadGraphic(Paths.image('backgrounds/' + this.curStage + '/sky'));
-				bg.scrollFactor.set(0.1, 0.1);
-				add(bg);
-
-				var city:FNFSprite = new FNFSprite(-10).loadGraphic(Paths.image('backgrounds/' + this.curStage + '/city'));
-				city.scrollFactor.set(0.3, 0.3);
-				city.setGraphicSize(Std.int(city.width * 0.85));
-				city.updateHitbox();
-				add(city);
-
-				phillyCityLights = new FlxTypedGroup<FNFSprite>();
-				add(phillyCityLights);
-
-				for (i in 0...5)
-				{
-					var light:FNFSprite = new FNFSprite(city.x).loadGraphic(Paths.image('backgrounds/' + this.curStage + '/win' + i));
-					light.scrollFactor.set(0.3, 0.3);
-					light.visible = false;
-					light.setGraphicSize(Std.int(light.width * 0.85));
-					light.updateHitbox();
-					light.antialiasing = true;
-					phillyCityLights.add(light);
-				}
-
-				var streetBehind:FNFSprite = new FNFSprite(-40, 50).loadGraphic(Paths.image('backgrounds/' + this.curStage + '/behindTrain'));
-				add(streetBehind);
-
-				phillyTrain = new FNFSprite(2000, 360).loadGraphic(Paths.image('backgrounds/' + this.curStage + '/train'));
-				add(phillyTrain);
-
-				trainSound = new FlxSound().loadEmbedded(Paths.sound('train_passes'));
-				FlxG.sound.list.add(trainSound);
-
-				// var cityLights:FNFSprite = new FNFSprite().loadGraphic(AssetPaths.win0.png);
-
-				var street:FNFSprite = new FNFSprite(-40, streetBehind.y).loadGraphic(Paths.image('backgrounds/' + this.curStage + '/street'));
-				add(street);
 			case 'highway':
 				this.curStage = 'highway';
 				PlayState.defaultCamZoom = 0.90;
@@ -367,41 +311,6 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				{
 					dancer.dance();
 				});
-
-			case 'philly':
-				if (!trainMoving)
-					trainCooldown += 1;
-
-				if (curBeat % 4 == 0)
-				{
-					var lastLight:FlxSprite = phillyCityLights.members[0];
-
-					phillyCityLights.forEach(function(light:FNFSprite)
-					{
-						// Take note of the previous light
-						if (light.visible == true)
-							lastLight = light;
-
-						light.visible = false;
-					});
-
-					// To prevent duplicate lights, iterate until you get a matching light
-					while (lastLight == phillyCityLights.members[curLight])
-					{
-						curLight = FlxG.random.int(0, phillyCityLights.length - 1);
-					}
-
-					phillyCityLights.members[curLight].visible = true;
-					phillyCityLights.members[curLight].alpha = 1;
-
-					FlxTween.tween(phillyCityLights.members[curLight], {alpha: 0}, Conductor.stepCrochet * .016);
-				}
-
-				if (curBeat % 8 == 4 && FlxG.random.bool(30) && !trainMoving && trainCooldown > 8)
-				{
-					trainCooldown = FlxG.random.int(-4, 0);
-					trainStart();
-				}
 			// case 'tank':
 			// 	tankWatchtower.dance();
 		}
@@ -414,70 +323,6 @@ class Stage extends FlxTypedGroup<FlxBasic>
 		}
 		catch(e) {
 		}
-
-		switch (PlayState.curStage)
-		{
-			case 'philly':
-				if (trainMoving)
-				{
-					trainFrameTiming += elapsed;
-
-					if (trainFrameTiming >= 1 / 24)
-					{
-						updateTrainPos(gf);
-						trainFrameTiming = 0;
-					}
-				}
-			// case 'tank':
-			// 	moveTank();
-
-		}
-	}
-
-	// PHILLY STUFFS!
-	function trainStart():Void
-	{
-		trainMoving = true;
-		if (!trainSound.playing)
-			trainSound.play(true);
-	}
-
-	function updateTrainPos(gf:Character):Void
-	{
-		if (trainSound.time >= 4700)
-		{
-			startedMoving = true;
-			gf.playAnim('hairBlow');
-		}
-
-		if (startedMoving)
-		{
-			phillyTrain.x -= 400;
-
-			if (phillyTrain.x < -2000 && !trainFinishing)
-			{
-				phillyTrain.x = -1150;
-				trainCars -= 1;
-
-				if (trainCars <= 0)
-					trainFinishing = true;
-			}
-
-			if (phillyTrain.x < -4000 && trainFinishing)
-				trainReset(gf);
-		}
-	}
-
-	function trainReset(gf:Character):Void
-	{
-		gf.playAnim('hairFall');
-		phillyTrain.x = FlxG.width + 200;
-		trainMoving = false;
-		// trainSound.stop();
-		// trainSound.time = 0;
-		trainCars = 8;
-		trainFinishing = false;
-		startedMoving = false;
 	}
 
 	override function add(Object:FlxBasic):FlxBasic
