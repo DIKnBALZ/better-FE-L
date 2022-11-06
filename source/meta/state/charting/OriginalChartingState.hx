@@ -592,30 +592,30 @@ class OriginalChartingState extends MusicBeatState
 		}
 		curRenderedNotes.forEachAlive(function(note:Note)
 		{
-		if (note.strumTime < songMusic.time)
-		{
-					var data:Int = note.noteData % 4;
+			if (note.strumTime < songMusic.time)
+			{
+						var data:Int = note.noteData % 4;
 
-					if (songMusic.playing && !playedSound[data] && data > -1 && note.strumTime >= lastSongPos)
-					{
-						if ((playTicksBf.checked) && (note.mustPress))
+						if (songMusic.playing && !playedSound[data] && data > -1 && note.strumTime >= lastSongPos)
 						{
-							FlxG.sound.play(Paths.sound('soundNoteTick'));
-							playedSound[data] = true;
+							if ((playTicksBf.checked) && (note.mustPress))
+							{
+								FlxG.sound.play(Paths.sound('soundNoteTick'));
+								playedSound[data] = true;
+							}
+							if ((playTicksDad.checked) && (!note.mustPress))
+							{
+								FlxG.sound.play(Paths.sound('soundNoteTick'));
+								playedSound[data] = true;
+							}
 						}
-						if ((playTicksDad.checked) && (!note.mustPress))
+						if (songMusic.playing && data > -1 && note.strumTime >= lastSongPos)
 						{
-							FlxG.sound.play(Paths.sound('soundNoteTick'));
-							playedSound[data] = true;
+							leftStrums[data].animation.play("confirm", true);
+							leftStrums[data].offset.x = strumOffsets[0] + 10;
+							leftStrums[data].offset.y = strumOffsets[1] + 10;
 						}
-					}
-					if (songMusic.playing && data > -1 && note.strumTime >= lastSongPos)
-					{
-						leftStrums[data].animation.play("confirm", true);
-						leftStrums[data].offset.x = strumOffsets[0] + 10;
-						leftStrums[data].offset.y = strumOffsets[1] + 10;
-					}
-		}
+			}
 		});
 	// yoshubs im going to brutally stab and murder you
 
